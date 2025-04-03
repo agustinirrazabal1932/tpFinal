@@ -1,0 +1,51 @@
+<mvc:View
+	controllerName="ui5.ShopStarWars.controller.List"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<f:DynamicPage id="dinamicaPagina" toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Categorias"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<Table
+				id="tablaP"
+				mode="SingleSelectMaster"
+				itemPress="onListItemPress"
+				inset="false"
+				items="{
+					path: 'products>/categories'
+				}"
+				class="sapFDynamicPageAlignContent"
+				width="auto">
+				<columns>
+					<Column width="12em">
+						<Text text="Categoria" />
+					</Column>
+					<Column	hAlign="End">
+						<Text text="Numero de items" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier title="{products>name}" />
+							<ObjectNumber
+									number="{
+										parts:[{path:'products>data'}],
+										type: 'sap.ui.model.type.Integer'
+									}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,12 @@
+{
+    "name": "ui5.ShopStarWars",
+    "version": "1.0.0",
+    "description": "The ShopStarWars application",
+    "scripts": {
+        "start": "ui5 serve -o index.html",
+        "build": "ui5 build"
+    },
+    "devDependencies": {
+        "@ui5/cli": "^4.0.14"
+    }
+}

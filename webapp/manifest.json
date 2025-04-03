@@ -1,0 +1,86 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "ui5.ShopStarWars",
+    "type": "application",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.m": {},
+        "sap.ui.layout": {},
+		"sap.uxap": {}
+      }
+    },
+    "config": {
+      "fullWidth": true
+    },
+    "rootView": {
+      "viewName": "ui5.ShopStarWars.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "fcl"
+    },
+    "routing": {
+		"config": {
+			"routerClass": "sap.f.routing.Router",
+			"type": "View",
+			"viewType": "XML",
+			"path": "ui5.ShopStarWars.view",
+			"controlId": "fcl",
+			"transition": "slide",
+			"bypassed": {
+			},
+			"async": true
+		},
+		"routes": [
+			{
+				"pattern": ":layout:",
+				"name": "list",
+				"target": [
+					"list"
+				]
+			},
+			{
+				"pattern": "listCategory/{category}/{product}/{layout}",
+				"name": "listCategory",
+				"target": [
+					"list",
+					"listCategory"
+				]
+			},
+			{
+				"pattern": "detalleProducto/{category}/{product}/{layout}",
+				"name": "detalleProducto",
+				"target": [
+					"list",
+					"listCategory",
+					"detalleProducto"
+				]
+
+			}
+		],
+		"targets": {
+			"list": {
+				"name": "List",
+				"controlAggregation": "beginColumnPages"
+			},
+			"listCategory": {
+				"name": "Category",
+				"controlAggregation": "midColumnPages"
+			},
+			"detalleProducto": {
+				"name": "DetalleProd",
+				"controlAggregation": "endColumnPages"
+			}
+		}
+
+    }
+  }
+}
