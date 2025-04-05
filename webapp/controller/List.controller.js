@@ -11,6 +11,7 @@ sap.ui.define([
 		onInit: function () {
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this._bDescendingSort = false;
+			this.oRouter.navTo("list", {layout:LayoutType.TwoColumnsMidExpanded});
 		},
 		onListItemPress: function (oEvent) {
 			var sCategory = oEvent.getSource().getSelectedItem().getCells()[0].getTitle(),

@@ -84,7 +84,7 @@
                   "price": 99.99,
                   "currency": "USD",
                   "description": "Figura imponente de Darth Vader con capa, máscara articulada y espada de luz.",
-                  "image": "assets/images/darth_vader.png",
+                  "image": "almacen/images/darth_vader.png",
                   "stock": 20,
                   "rating": 4.8,
                   "details": {
@@ -379,7 +379,7 @@
       "price": 79.99,
       "currency": "USD",
       "description": "Figura de acción detallada de Luke Skywalker con múltiples puntos de movilidad y accesorios intercambiables.",
-      "image": "assets/images/luke.png",
+      "image": "almacen/images/luke.png",
       "stock": 25,
       "rating": 4.5,
       "details": {

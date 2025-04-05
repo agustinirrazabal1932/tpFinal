@@ -37,11 +37,11 @@ sap.ui.define([
 
 		// 	this.oRouter.navTo("detailDetailDetail", {layout: LayoutType.ThreeColumnsMidExpanded, category: this._category, product: this._product, supplier: supplier});
 		// },
-		// handleFullScreen: function () {
-		// 	this.bFocusFullScreenButton = true;
-		// 	var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
-		// 	this.navigateToView(sNextLayout, "listCategory");
-		// },
+		handleFullScreen: function () {
+			this.bFocusFullScreenButton = true;
+			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
+			this.navigateToView(sNextLayout, "detalleProducto");
+		},
 		// handleExitFullScreen: function () {
 		// 	this.bFocusFullScreenButton = true;
 		// 	var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/exitFullScreen");

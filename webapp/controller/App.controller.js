@@ -49,20 +49,20 @@ sap.ui.define([
 			this.currentCategory = oArguments.category;
 		},
 		
-		_updateLayout: function(sLayout) {
-			var oModel = this.getOwnerComponent().getModel();
+		// _updateLayout: function(sLayout) {
+		// 	var oModel = this.getOwnerComponent().getModel();
 
-			// If there is no layout parameter, query for the default level 0 layout (normally OneColumn)
-			if (!sLayout) {
-				var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(0);
-				sLayout = oNextUIState.layout;
-			}
+		// 	// If there is no layout parameter, query for the default level 0 layout (normally OneColumn)
+		// 	if (!sLayout) {
+		// 		var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(0);
+		// 		sLayout = oNextUIState.layout;
+		// 	}
 
-			// Update the layout of the FlexibleColumnLayout
-			if (sLayout) {
-				oModel.setProperty("/layout", sLayout);
-			}
-		},
+		// 	// Update the layout of the FlexibleColumnLayout
+		// 	if (sLayout) {
+		// 		oModel.setProperty("/layout", sLayout);
+		// 	}
+		// },
         
         //para sincronizar los cambios de estados
 		onStateChanged: function (oEvent) {

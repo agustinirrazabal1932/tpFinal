@@ -29,7 +29,8 @@
 
 						<actions>
 							<m:Button
-									text="Edit"
+									text="Agregar"
+									icon="sap-icon://cart-2"
 									type="Emphasized"
 									press="toggleAreaPriority"/>
 							<!-- <m:Button
@@ -48,7 +49,7 @@
 						</actions>
 
 						<navigationActions>
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" />
 							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
 							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close middle column" />
 						</navigationActions>
@@ -58,7 +59,7 @@
 
 				<headerContent>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-						<m:Avatar src="../../../../../../../{products>ProductPicUrl}"
+						<m:Avatar src="../../../../../../../{products>image}"
 								  displaySize="L"
 								  displayShape="Square"
 								  class="sapUiTinyMarginEnd">
