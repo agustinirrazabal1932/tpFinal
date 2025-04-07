@@ -1,98 +1,53 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function ( Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel"
+], function ( Controller,JSONModel) {
 	"use strict";
 
 	return Controller.extend("ui5.ShopStarWars.controller.App", {
 		onInit: function () {
-            //inicializa el router
-			this.oRouter = this.getOwnerComponent().getRouter();
-			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
-			this.oRouter.attachBeforeRouteMatched(this.onBeforeRouteMatched, this);
+            var oViewModel,
+
+			oViewModel = new JSONModel({
+				layout : "TwoColumnsMidExpanded",
+				smallScreenMode : true
+			});
+
+			this.getView().setModel(oViewModel, "appView");
+			
 		},
         //sirve para cargar los datos ante que se vea la interfaz
-		onBeforeRouteMatched: function(oEvent) {
-
-			var oModel = this.getOwnerComponent().getModel();
-
-			var sLayout = oEvent.getParameters().arguments.layout;
-
-			// si no existe el layaout significa q le asigna que tenga 1 columna
-			if (!sLayout) {
-				var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(0);
-				sLayout = oNextUIState.layout;
-			}
-
-			//si el rout es igual a list lo borra de la primer columna
-			if (this.currentRouteName === "list") { 
-				var oListView = this.oRouter.getView("ui5.ShopStarWars.view.List");
-				this.getView().byId("fcl").removeBeginColumnPage(oListView);
-			}
-
-			//si existe lo carga en el modelo
-			if (sLayout) {
-				oModel.setProperty("/layout", sLayout);
-			}
-		},
-        
-        //por si machea la url y guarda los nombres y los argumentos
-		onRouteMatched: function (oEvent) {
-			var sRouteName = oEvent.getParameter("name"),
-				oArguments = oEvent.getParameter("arguments");
-
-			this._updateUIElements();
-
-			
-			this.currentRouteName = sRouteName;
-			this.currentProduct = oArguments.product;
-			this.currentSupplier = oArguments.supplier;
-			this.currentCategory = oArguments.category;
-		},
-		
-		// _updateLayout: function(sLayout) {
-		// 	var oModel = this.getOwnerComponent().getModel();
-
-		// 	// If there is no layout parameter, query for the default level 0 layout (normally OneColumn)
-		// 	if (!sLayout) {
-		// 		var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(0);
-		// 		sLayout = oNextUIState.layout;
-		// 	}
-
-		// 	// Update the layout of the FlexibleColumnLayout
-		// 	if (sLayout) {
-		// 		oModel.setProperty("/layout", sLayout);
-		// 	}
-		// },
-        
         //para sincronizar los cambios de estados
-		onStateChanged: function (oEvent) {
-			var bIsNavigationArrow = oEvent.getParameter("isNavigationArrow"),
-				sLayout = oEvent.getParameter("layout");
+		onStateChange: function (oEvent) {
+			var sLayout = oEvent.getParameter("layout"),
+				iColumns = oEvent.getParameter("maxColumnsCount");
 
-			this._updateUIElements();
-
-			
-			if (bIsNavigationArrow) {
-				this.oRouter.navTo(this.currentRouteName,
-					{
-						layout: sLayout, 
-						category: this.currentCategory, 
-						product: this.currentProduct, 
-						supplier: this.currentSupplier
-					}, true);
+			if (iColumns === 1) {
+				this.getView().getModel("appView").setProperty("/smallScreenMode", true);
+			} else {
+				this.getView().getModel("appView").setProperty("/smallScreenMode", false);
+				// swich back to two column mode when device orientation is changed
+				if (sLayout === "OneColumn") {
+					this._setLayout("Two");
+				}
 			}
 		},
 
-		// actualizar el modelo y la vista
-		_updateUIElements: function () {
-			var oModel = this.getOwnerComponent().getModel();
-			var oUIState = this.getOwnerComponent().getHelper().getCurrentUIState();
-			oModel.setData(oUIState, true);
+		/**
+		 * Sets the flexible column layout to one, two, or three columns for the different scenarios across the app
+		 * @param {string} sColumns the target amount of columns
+		 * @private
+		 */
+		_setLayout: function (sColumns) {
+			if (sColumns) {
+				this.getView().getModel("appView").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
+			}
 		},
-        //para cerrar el router y liberar memoria
-		onExit: function () {
-			this.oRouter.detachRouteMatched(this.onRouteMatched, this);
-			this.oRouter.detachBeforeRouteMatched(this.onBeforeRouteMatched, this);
-		}
+
+        // //para cerrar el router y liberar memoria
+		// onExit: function () {
+		// 	this.oRouter.detachRouteMatched(this.onRouteMatched, this);
+		// 	this.oRouter.detachBeforeRouteMatched(this.onBeforeRouteMatched, this);
+		// }
 	});
 });

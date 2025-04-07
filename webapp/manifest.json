@@ -24,8 +24,7 @@
     "rootView": {
       "viewName": "ui5.ShopStarWars.view.App",
       "type": "XML",
-      "async": true,
-      "id": "fcl"
+      "id": "app"
     },
     "routing": {
 		"config": {
@@ -35,48 +34,69 @@
 			"path": "ui5.ShopStarWars.view",
 			"controlId": "fcl",
 			"transition": "slide",
+			"controlAggregation": "midColumnPages",
 			"bypassed": {
-			},
-			"async": true
+				"target": [
+					"inicio"
+				]
+			}
 		},
 		"routes": [
 			{
-				"pattern": ":layout:",
-				"name": "list",
+				"pattern": "",
+				"name": "inicio",
 				"target": [
-					"list"
+					"list",
+					"inicio"
 				]
 			},
 			{
-				"pattern": "listCategory/{category}/{product}/{layout}",
+				"pattern": "listCategory/{category}/{product}",
 				"name": "listCategory",
 				"target": [
-					"list",
-					"listCategory"
+					"listCategory",
+					"inicio"
 				]
 			},
 			{
-				"pattern": "detalleProducto/{category}/{product}/{layout}",
+				"pattern": "detalleProducto/{category}/{product}",
 				"name": "detalleProducto",
 				"target": [
-					"list",
 					"listCategory",
 					"detalleProducto"
 				]
 
+			},
+			{
+				"pattern": "cart",
+				"name": "cart",
+				"target": [
+					"list",
+					"inicio",
+					"cart"
+				]
 			}
+
 		],
 		"targets": {
 			"list": {
 				"name": "List",
 				"controlAggregation": "beginColumnPages"
 			},
+			"inicio": {
+				"name": "Inicio",
+				"controlAggregation": "midColumnPages"
+			},
 			"listCategory": {
 				"name": "Category",
-				"controlAggregation": "midColumnPages"
+				"controlAggregation": "beginColumnPages"
 			},
 			"detalleProducto": {
 				"name": "DetalleProd",
+				"controlAggregation": "midColumnPages"
+			},
+			"cart":{
+				"name":"Cart",
 				"controlAggregation": "endColumnPages"
 			}
 		}

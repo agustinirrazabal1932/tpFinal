@@ -396,7 +396,7 @@
       "price": 99.99,
       "currency": "USD",
       "description": "Figura de acción detallada de Luke Skywalker con múltiples puntos de movilidad y accesorios intercambiables.",
-      "image": "assets/images/luke.png",
+      "image": "almacen/images/lukeE.png",
       "stock": 10,
       "rating": 4.5,
       "details": {
@@ -414,8 +414,25 @@
       "price": 79.99,
       "currency": "USD",
       "description": "Figura de acción de Leia Organa con detalle en vestuario y accesorios característicos.",
-      "image": "assets/images/leia.png",
+      "image": "almacen/images/leia.png",
       "stock": 30,
+      "rating": 4.7,
+      "details": {
+        "height": "20 cm",
+        "material": "PVC",
+        "manufacturer": "Star Wars Collectibles",
+        "weight": "0.45 kg"
+      }
+    },
+    {
+      "price": 89.99,
+      "stock": 10,
+      "id":  "prod2-v2",
+      "name": "Leia Organa Edición Fan",
+      "categories":"Figuras de Acción",
+      "currency": "USD",
+      "description": "Figura de acción de Leia Organa con detalle en vestuario y accesorios característicos.",
+      "image": "almacen/images/leiaE.png",
       "rating": 4.7,
       "details": {
         "height": "20 cm",
@@ -431,7 +448,7 @@
       "price": 99.99,
       "currency": "USD",
       "description": "Figura imponente de Darth Vader con capa, máscara articulada y espada de luz.",
-      "image": "assets/images/darth_vader.png",
+      "image": "almacen/images/darthVader.png",
       "stock": 20,
       "rating": 4.8,
       "details": {
@@ -439,6 +456,57 @@
         "material": "PVC",
         "manufacturer": "Imperial Toys",
         "weight": "0.55 kg"
+      }
+    },
+    {
+      "price": 119.99,
+      "stock": 8,
+      "id": "prod3-v2",
+      "name": "Darth Vader Edición Especial",
+      "categories":"Figuras de Acción",
+      "currency": "USD",
+      "description": "Figura imponente de Darth Vader con capa, máscara articulada y espada de luz.",
+      "image": "almacen/images/darthVaderE.png",
+      "rating": 4.8,
+      "details": {
+        "height": "22 cm",
+        "material": "PVC",
+        "manufacturer": "Imperial Toys",
+        "weight": "0.55 kg"
+      }
+    },
+    {
+      "id": "prod4",
+      "name": "Kylo Ren",
+      "categories":"Figuras de Acción",
+      "price": 89.99,
+      "currency": "USD",
+      "description": "Figura de acción de Kylo Ren con detalles en su casco y capa, confeccionada con gran realismo.",
+      "image": "almacen/images/kyloRen.png",
+      "stock": 15,
+      "rating": 4.3,
+      "details": {
+        "height": "20 cm",
+        "material": "PVC",
+        "manufacturer": "Imperial Toys",
+        "weight": "0.5 kg"
+      }
+    },
+    {
+      "id": "prod4-v2",
+      "categories":"Figuras de Acción",
+      "name": "Kylo Ren Glow Edition",
+      "price": 99.99,
+      "currency": "USD",
+      "description": "Figura de acción de Kylo Ren con detalles en su casco y capa, confeccionada con gran realismo.",
+      "image": "almacen/images/kyloRenE.png",
+      "stock": 5,
+      "rating": 4.3,
+      "details": {
+        "height": "20 cm",
+        "material": "PVC",
+        "manufacturer": "Imperial Toys",
+        "weight": "0.5 kg"
       }
     },
     {

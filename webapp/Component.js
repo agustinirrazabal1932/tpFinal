@@ -25,24 +25,14 @@ sap.ui.define([
 			var oProductsModel = new JSONModel(sap.ui.require.toUrl('sap/ui/demo/mock/productosC.json'));
 			oProductsModel.setSizeLimit(1000);
 			this.setModel(oProductsModel, 'products');
-					
+			
+			//setea modelo del carrito
+			var oCart= new JSONModel(sap.ui.require.toUrl('sap/ui/demo/mock/cart.json'));
+			this.setModel(oCart, 'carts');
+
             this.getRouter().initialize();
 			
 		},
-
-		
-		//crea la funcion getHelper para inicializar
-		getHelper: function () {
-			var oFCL = this.getRootControl().byId("fcl"),
-				oParams = new URLSearchParams(window.location.search),
-				oSettings = {
-					defaultTwoColumnLayoutType: LayoutType.TwoColumnsMidExpanded,
-					initialColumnsCount: oParams.get("initial"),
-					maxColumnsCount: oParams.get("max")
-				};
-
-			return FlexibleColumnLayoutSemanticHelper.getInstanceFor(oFCL, oSettings);
-		}
 
 	});
 });

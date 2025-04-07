@@ -1,12 +1,19 @@
-<mvc:View xmlns="sap.f"  xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" controllerName="ui5.ShopStarWars.controller.App" height="100%">
-	<m:App >
-		<FlexibleColumnLayout id="fcl"
-			stateChange="onStateChanged"
-			layout="{/layout}"
-			backgroundDesign="Solid">
-		</FlexibleColumnLayout>
-	</m:App>
-	
+<mvc:View
+	controllerName="ui5.ShopStarWars.controller.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App
+		id="app"
+		class="sapUiDemoCart">
+		<f:FlexibleColumnLayout
+			id="fcl"
+			layout="{appView>/layout}"
+			backgroundDesign="Translucent"
+			stateChange=".onStateChange">
+		</f:FlexibleColumnLayout>
+	</App>
 </mvc:View>
 <!-- <l:Splitter height="500px" width="100%">
 			<FlexibleColumnLayout id="fcl"

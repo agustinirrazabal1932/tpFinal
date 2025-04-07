@@ -20,16 +20,16 @@ sap.ui.define([
 			this.oRouter.getRoute("listCategory").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detalleProducto").attachPatternMatched(this._onProductMatched, this);
 
-			[oExitButton, oEnterButton].forEach(function (oButton) {
-				oButton.addEventDelegate({
-					onAfterRendering: function () {
-						if (this.bFocusFullScreenButton) {
-							this.bFocusFullScreenButton = false;
-							oButton.focus();
-						}
-					}.bind(this)
-				});
-			}, this);
+			// [oExitButton, oEnterButton].forEach(function (oButton) {
+			// 	oButton.addEventDelegate({
+			// 		onAfterRendering: function () {
+			// 			if (this.bFocusFullScreenButton) {
+			// 				this.bFocusFullScreenButton = false;
+			// 				oButton.focus();
+			// 			}
+			// 		}.bind(this)
+			// 	});
+			// }, this);
 		},
 		// handleItemPress: function (oEvent) {
 		// 	var supplierPath = oEvent.getSource().getSelectedItem().getBindingContext("products").getPath(),
@@ -37,22 +37,22 @@ sap.ui.define([
 
 		// 	this.oRouter.navTo("detailDetailDetail", {layout: LayoutType.ThreeColumnsMidExpanded, category: this._category, product: this._product, supplier: supplier});
 		// },
-		handleFullScreen: function () {
-			this.bFocusFullScreenButton = true;
-			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
-			this.navigateToView(sNextLayout, "detalleProducto");
-		},
+		// handleFullScreen: function () {
+		// 	this.bFocusFullScreenButton = true;
+		// 	//var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/benginColumn/fullScreen");
+		// 	this.navigateToView( "detalleProductoGrande");
+		// },
 		// handleExitFullScreen: function () {
 		// 	this.bFocusFullScreenButton = true;
 		// 	var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/exitFullScreen");
 		// 	this.navigateToView(sNextLayout, "listCategory");
 		// },
 		handleClose: function () {
-			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
-			this.navigateToView(sNextLayout, "list");
+			//var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/beginColumn/closeColumn");
+			this.navigateToView("inicio");
 		},
-		navigateToView: function (sNextLayout, sNextView) {
-			this.oRouter.navTo(sNextView, {layout: sNextLayout, category: this._category, product: this._product});
+		navigateToView: function (sNextView) {
+			this.oRouter.navTo(sNextView);
 		},
 		_onProductMatched: function (oEvent) {
 			this._product = oEvent.getParameter("arguments").product || this._product || "0";
@@ -62,6 +62,42 @@ sap.ui.define([
 				path: "/productosTodos/" + this._product,
 				model: "products"
 			});
+		},
+		_getProduct: function() {
+			// Obtener el contexto del elemento vinculado en la vista
+			var oBindingContext = this.getView().getBindingContext("products");
+			
+			// Verificar si hay un contexto y un producto seleccionado
+			if (oBindingContext && this._product) {
+				// Obtener los datos del producto desde el modelo
+				var oProduct = oBindingContext.getObject();
+				// Asumiendo que el nombre del producto está en una propiedad llamada "name"
+				return oProduct || null;
+			} else {
+				return "Producto no seleccionado";
+			}
+		},
+		onComprar: function(oEvent){
+			var oProducto=this._getProduct();
+			var bSeEncontro=false;
+			var oModel = this.getView().getModel("carts");
+            var aCartItems = oModel.getProperty("/carritoCompra") || [];
+			for (var i = 0; i < aCartItems.length; i++) {
+				var oProductoArray = aCartItems[i];
+				if (oProductoArray.name === oProducto.name) {
+					bSeEncontro=true;
+					oProductoArray.quantity += 1;
+					break;
+				}
+			}
+			if(!bSeEncontro){
+
+				var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
+				aCartItems.push(oProduct);
+			}
+			oModel.setProperty("/cartItems", aCartItems);
+
+
 		}
 	});
 });

@@ -1,0 +1,108 @@
+<mvc:View
+	controllerName="ui5.ShopStarWars.controller.Cart"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page title="Carrito de Compras">
+        <content>
+            <List
+				delete=".onCartEntriesDelete"
+                id="cartList"
+                items="{
+        			path: 'carts>/carritoCompra'
+				}"
+                growing="true"
+                growingThreshold="5">
+                <items>
+                    <CustomListItem>
+                        <HBox alignItems="Center" justifyContent="SpaceBetween">
+                            <!-- Información del producto -->
+                            <VBox class="sapUiSmallMargin">
+								<Image src="../{carts>image}" width="200px"/>
+                                <Text text="{carts>name}"/>
+								<Text text="Cantidad: {carts>quantity}"/>
+                                <Text text="Precio: {carts>price}"/>
+                                <Text text="Subtotal: {= ${carts>price} * ${carts>quantity}}"/>
+                            </VBox>
+                            <!-- Cantidad y botón -->
+                            <VBox alignItems="End">
+                                <Button
+                                    text="Eliminar"
+                                    press="onDeleteItem"
+                                    type="Reject"/>
+                            </VBox>
+                        </HBox>
+                    </CustomListItem>
+                </items>
+            </List>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button
+                    text="Proceder al Pago"
+                    press="onCheckout"
+                    type="Emphasized"/>
+
+                <Text text="Total:{carts>/total}"/>
+                
+            </Toolbar>
+        </content>
+    </Page>
+</mvc:View>
+
+<!-- <mvc:View
+    controllerName="myapp.controller.Cart"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <Page title="Carrito de Compras">
+        <content>
+            <Table
+                id="cartTable"
+                items="{
+        			path: 'carts>/carritoCompra'
+				}"
+                growing="true"
+                growingThreshold="5">
+                <columns>
+                    <Column>
+                        <Text text="Producto"/>
+                    </Column>
+                    <Column>
+                        <Text text="Precio"/>
+                    </Column>
+                    <Column>
+                        <Text text="Cantidad"/>
+                    </Column>
+                    <Column>
+                        <Text text="Subtotal"/>
+                    </Column>
+                    <Column width="100px"/>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{name}"/>
+                            <Text text="{price}"/>
+                            <Input
+                                value="{quantity}"
+                                type="Number"
+                                change="onQuantityChange"/>
+                            <Text text="{= ${price} * ${quantity}}"/>
+                            <Button
+                                text="Eliminar"
+                                press="onDeleteItem"
+                                type="Reject"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Text text="Total: {/total}"/>
+                <Button
+                    text="Proceder al Pago"
+                    press="onCheckout"
+                    type="Emphasized"/>
+            </Toolbar>
+        </content>
+    </Page>
+</mvc:View> -->

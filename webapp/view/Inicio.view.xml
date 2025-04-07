@@ -1,0 +1,39 @@
+<mvc:View
+	controllerName="ui5.ShopStarWars.controller.Inicio"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="pageInicio">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button
+						icon="sap-icon://menu2"
+						press=".onShowCategories"
+						visible="{appView>/smallScreenMode}"/>
+				</contentLeft>
+				<contentMiddle>
+					<Title
+						level="H2"
+						tooltip="{i18n>welcomeDescription}"
+						text="{i18n>welcomeHeadline}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button
+						icon="sap-icon://customer"
+						press=".onAvatarPress"
+						tooltip="{i18n>avatarButtonTooltip}"/>
+					<ToggleButton
+						icon="sap-icon://cart"
+						pressed="{= ${appView>/layout}.startsWith('ThreeColumns') }"
+						tooltip="{i18n>toCartButtonTooltip}"
+						press=".onToggleCart">
+					</ToggleButton>
+				</contentRight>
+			</Bar>
+		</customHeader>
+	
+	</Page>
+
+</mvc:View>

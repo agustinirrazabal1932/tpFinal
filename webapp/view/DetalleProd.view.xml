@@ -32,7 +32,7 @@
 									text="Agregar"
 									icon="sap-icon://cart-2"
 									type="Emphasized"
-									press="toggleAreaPriority"/>
+									press="onComprar"/>
 							<!-- <m:Button
 									text="Delete"
 									type="Transparent"/>
@@ -49,8 +49,8 @@
 						</actions>
 
 						<navigationActions>
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" />
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+							<!-- <m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" />
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/> -->
 							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close middle column" />
 						</navigationActions>
 
@@ -99,8 +99,6 @@
 									<m:Text text="{products>id}"/>
 									<m:Label text="Descripcion"/>
 									<m:Text text="{products>description}"/>
-									<m:Label text="Detalles"/>
-									<m:Text text="{products>details/height}"/>
 								</form:content>
 							</form:SimpleForm>
 						</blocks>
@@ -108,26 +106,31 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="Comprar">
+			<ObjectPageSection title="Detalles">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<m:Table
-								id="suppliersTable"
-								mode="SingleSelectMaster"
-								itemPress="handleItemPress"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
-								<m:columns>
-									<m:Column />
-								</m:columns>
-								<m:items>
-									<m:ColumnListItem type="Navigation">
-										<m:cells>
-											<m:ObjectIdentifier text="{products>text}" />
-										</m:cells>
-									</m:ColumnListItem>
-								</m:items>
-							</m:Table>
+							<form:SimpleForm
+								maxContainerCols="2"
+								editable="false"
+								layout="ResponsiveGridLayout"
+								labelSpanL="12"
+								labelSpanM="12"
+								emptySpanL="0"
+								emptySpanM="0"
+								columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="Altura"/>
+									<m:Text text="{products>details/height}"/>
+									<m:Label text="Material Del Producto"/>
+									<m:Text text="{products>details/material}"/>
+									<m:Label text="Fabricante"/>
+									<m:Text text="{products>details/manufacturer}"/>
+									<m:Label text="Peso"/>
+									<m:Text text="{products>details/manufacturer}"/>
+								</form:content>
+							</form:SimpleForm>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
