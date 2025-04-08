@@ -96,8 +96,15 @@ sap.ui.define([
 				aCartItems.push(oProduct);
 			}
 			oModel.setProperty("/cartItems", aCartItems);
-
-
-		}
+			this._updateTotal();
+		},
+		_updateTotal: function() {
+            let oModel = this.getView().getModel("carts");
+            let aItems = oModel.getData().carritoCompra;
+            let fTotal = aItems.reduce(function(sum, item) {
+                return sum + (item.price * item.quantity);
+            }, 0);
+            oModel.setProperty("/total", fTotal.toFixed(2));
+        },
 	});
 });

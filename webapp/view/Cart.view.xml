@@ -5,19 +5,25 @@
 	<Page title="Carrito de Compras">
         <content>
             <List
-				delete=".onCartEntriesDelete"
                 id="cartList"
                 items="{
         			path: 'carts>/carritoCompra'
 				}"
                 growing="true"
-                growingThreshold="5">
+                growingThreshold="5"
+                delete=".onEliminardelCarrito"
+                mode="Delete">
+                <headerToolbar>
+					<Toolbar>
+						<Title text="Lista Para Comprar"/>
+					</Toolbar>
+				</headerToolbar>
                 <items>
                     <CustomListItem>
                         <HBox alignItems="Center" justifyContent="SpaceBetween">
                             <!-- Información del producto -->
                             <VBox class="sapUiSmallMargin">
-								<Image src="../{carts>image}" width="200px"/>
+								<Image src="../{carts>image}" width="100px"/>
                                 <Text text="{carts>name}"/>
 								<Text text="Cantidad: {carts>quantity}"/>
                                 <Text text="Precio: {carts>price}"/>
@@ -25,10 +31,10 @@
                             </VBox>
                             <!-- Cantidad y botón -->
                             <VBox alignItems="End">
-                                <Button
-                                    text="Eliminar"
-                                    press="onDeleteItem"
-                                    type="Reject"/>
+                            <Button
+                                text="Cambiar"
+                                press="onCambiarList"
+                                type="Default"/>
                             </VBox>
                         </HBox>
                     </CustomListItem>
@@ -39,11 +45,49 @@
                 <Button
                     text="Proceder al Pago"
                     press="onCheckout"
-                    type="Emphasized"/>
+                    type="Accept"/>
 
                 <Text text="Total:{carts>/total}"/>
                 
             </Toolbar>
+
+            <List
+                id="cartListGuardar"
+                items="{
+        			path: 'carts>/carritoGuardar'
+				}"
+                growing="true"
+                growingThreshold="5"
+                delete=".onEliminardelCarrito"
+                mode="Delete">
+                <headerToolbar>
+					<Toolbar>
+						<Title text="Lista Para Comprar Mas Adelante"/>
+					</Toolbar>
+				</headerToolbar>
+                <items>
+                    <CustomListItem>
+                        <HBox alignItems="Center" justifyContent="SpaceBetween">
+                            <!-- Información del producto -->
+                            <VBox class="sapUiSmallMargin">
+								<Image src="../{carts>image}" width="100px"/>
+                                <Text text="{carts>name}"/>
+								<Text text="Cantidad: {carts>quantity}"/>
+                                <Text text="Precio: {carts>price}"/>
+                                <Text text="Subtotal: {= ${carts>price} * ${carts>quantity}}"/>
+                            </VBox>
+                            <!-- Cantidad y botón -->
+                            <VBox alignItems="End">
+                                <Button
+                                text="Cambiar De Lista"
+                                press="onCambiarList"
+                                type="Neutral"/>
+                            </VBox>
+                        </HBox>
+                    </CustomListItem>
+                </items>
+            </List>
+
         </content>
     </Page>
 </mvc:View>
