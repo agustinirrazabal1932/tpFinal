@@ -31,19 +31,14 @@ sap.ui.define([
             oModel.setProperty("/total", fTotal.toFixed(2));
         },
         onCheckout: function(){
-            this._updateTotal();
         },
         onEliminardelCarrito: function(oEvent){
-            this._onDeleteItem(oEvent)
-            
-        },
-        _onDeleteItem: function(oEvent){
             let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
                 oProduct=oBindingContext.getObject(),
+                sNombre=oProduct.name,
                 oModel = this.getView().getModel("carts"),
-                iProduct=-1,
-                aCartItems = oModel.getProperty("/carritoCompra") || [];
-
+                aCartItems = oModel.getProperty("/carritoCompra") || [],
+                iProduct=-1;
             MessageBox.show(("¿Desea eliminar Este Item?"), {
                 title: "Aviso",
                 actions: [
@@ -57,7 +52,7 @@ sap.ui.define([
 
                     for (let i = 0; i < aCartItems.length; i++) {
                         let oProductoArray = aCartItems[i];
-                        if (oProductoArray.name === oProduct.name) {
+                        if (oProductoArray.name === sNombre) {
                             iProduct=i;
                             break;
                         }
@@ -65,13 +60,109 @@ sap.ui.define([
                     if(iProduct>-1){
                         aCartItems.splice(iProduct, 1);
                         oModel.setProperty("/carritoCompra", aCartItems);
-                        
+                        this._updateTotal();
                     }
-                    MessageToast.show("Se eliminado el Producto "+ [oProduct.name]);
-                    
+                    MessageToast.show("Se eliminado el Producto "+ [sNombre]);
                 }
             });
+        },
+        onCambiarListCarrito: function(oEvent){
+            let oButton = oEvent.getSource();
+            let oListItem = oButton.getParent(); // El HBox
+            oListItem = oListItem.getParent();   // El CustomListItem
+
+            // Obtener el contexto de binding
+            let oBindingContext = oListItem.getBindingContext("carts"),
+                oProducto=oBindingContext.getObject(),
+                oModel = this.getView().getModel("carts"),
+                aCartItems = oModel.getProperty("/carritoCompra") || [],
+                aCartFavorito=oModel.getProperty("/carritoGuardar") || [],
+                iProduct=-1,
+                bSeEncontro=false;
+            for (var i = 0; i < aCartItems.length; i++) {
+				var oProductoArray = aCartItems[i];
+				if (oProductoArray.name === oProducto.name) {
+					bSeEncontro=true;
+                    iProduct=i;
+					break;
+				}
+			}
+			if(bSeEncontro){
+
+				var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: oProducto.quantity }, oProduct);
+				aCartFavorito.push(oProduct);
+                aCartItems.splice(iProduct, 1);
+               
+			}
+            oModel.setProperty("/carritoCompra", aCartItems);
+			oModel.setProperty("/carritoGuardar", aCartFavorito);
+			this._updateTotal();
+        },
+        onEliminardelCarritoFav: function(oEvent){
+            let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
+                oProduct=oBindingContext.getObject(),
+                sNombre=oProduct.name,
+                oModel = this.getView().getModel("carts"),
+                aCartItems = oModel.getProperty("/carritoGuardar") || [],
+                iProduct=-1;
+            MessageBox.show(("¿Desea eliminar Este Item?"), {
+                title: "Aviso",
+                actions: [
+                    MessageBox.Action.DELETE,
+                    MessageBox.Action.CANCEL
+                ],
+                onClose: function (oAction) {
+                    if (oAction !== MessageBox.Action.DELETE) {
+                        return;
+                    }
+
+                    for (let i = 0; i < aCartItems.length; i++) {
+                        let oProductoArray = aCartItems[i];
+                        if (oProductoArray.name === sNombre) {
+                            iProduct=i;
+                            break;
+                        }
+                    }
+                    if(iProduct>-1){
+                        aCartItems.splice(iProduct, 1);
+                        oModel.setProperty("/carritoGuardar", aCartItems);
+                    }
+                    MessageToast.show("Se eliminado el Producto "+ [sNombre]);
+                }
+            });
+        },
+        onCambiarListFav: function(oEvent){
+            let oButton = oEvent.getSource();
+            let oListItem = oButton.getParent(); // El HBox
+            oListItem = oListItem.getParent();   // El CustomListItem
+
+            // Obtener el contexto de binding
+            let oBindingContext = oListItem.getBindingContext("carts"),
+                oProducto=oBindingContext.getObject(),
+                oModel = this.getView().getModel("carts"),
+                aCartItems = oModel.getProperty("/carritoGuardar") || [],
+                aCartCompra=oModel.getProperty("/carritoCompra") || [],
+                iProduct=-1,
+                bSeEncontro=false;
+            for (var i = 0; i < aCartItems.length; i++) {
+				var oProductoArray = aCartItems[i];
+				if (oProductoArray.name === oProducto.name) {
+					bSeEncontro=true;
+                    iProduct=i;
+					break;
+				}
+			}
+			if(bSeEncontro){
+
+				var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: oProducto.quantity }, oProduct);
+				aCartCompra.push(oProduct);
+                aCartItems.splice(iProduct, 1);
+               
+			}
+            oModel.setProperty("/carritoCompra", aCartCompra);
+			oModel.setProperty("/carritoGuardar", aCartItems);
+			this._updateTotal();
         }
-       
+
     });
 });

@@ -21,6 +21,13 @@
     "config": {
       "fullWidth": true
     },
+	"resources": {
+		"css": [
+			{
+				"uri": "css/style.css"
+			}
+		]
+	},
     "rootView": {
       "viewName": "ui5.ShopStarWars.view.App",
       "type": "XML",

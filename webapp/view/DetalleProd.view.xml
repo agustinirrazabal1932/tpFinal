@@ -33,6 +33,11 @@
 									icon="sap-icon://cart-2"
 									type="Emphasized"
 									press="onComprar"/>
+							<m:Button
+									text="Favorito"
+									icon="sap-icon://add-favorite"
+									type="Success"
+									press="onFavorito"/>
 							<!-- <m:Button
 									text="Delete"
 									type="Transparent"/>

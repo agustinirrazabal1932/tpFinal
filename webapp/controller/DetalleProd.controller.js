@@ -80,8 +80,10 @@ sap.ui.define([
 		onComprar: function(oEvent){
 			var oProducto=this._getProduct();
 			var bSeEncontro=false;
+			let bSeEncontroFav=false;
 			var oModel = this.getView().getModel("carts");
             var aCartItems = oModel.getProperty("/carritoCompra") || [];
+			var aCartFavorito = oModel.getProperty("/carritoGuardar") || [];
 			for (var i = 0; i < aCartItems.length; i++) {
 				var oProductoArray = aCartItems[i];
 				if (oProductoArray.name === oProducto.name) {
@@ -92,10 +94,21 @@ sap.ui.define([
 			}
 			if(!bSeEncontro){
 
-				var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
-				aCartItems.push(oProduct);
+				for (let i = 0; i < aCartFavorito.length; i++) {
+					let oProductoArray = aCartFavorito[i];
+					if (oProductoArray.name === oProducto.name) {
+						bSeEncontroFav=true;
+						oProductoArray.quantity += 1;
+						break;
+					}
+				}
+				if(!bSeEncontroFav){
+					var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
+					aCartItems.push(oProduct);
+				}
 			}
-			oModel.setProperty("/cartItems", aCartItems);
+			oModel.setProperty("/carritoCompra", aCartItems);
+			oModel.setProperty("/carritoGuardar", aCartFavorito);
 			this._updateTotal();
 		},
 		_updateTotal: function() {

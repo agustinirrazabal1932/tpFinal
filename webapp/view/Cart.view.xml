@@ -33,7 +33,7 @@
                             <VBox alignItems="End">
                             <Button
                                 text="Cambiar"
-                                press="onCambiarList"
+                                press="onCambiarListCarrito"
                                 type="Default"/>
                             </VBox>
                         </HBox>
@@ -58,11 +58,12 @@
 				}"
                 growing="true"
                 growingThreshold="5"
-                delete=".onEliminardelCarrito"
-                mode="Delete">
+                delete=".onEliminardelCarritoFav"
+                mode="Delete"
+                icon="sap-icon://favorite-list">
                 <headerToolbar>
 					<Toolbar>
-						<Title text="Lista Para Comprar Mas Adelante"/>
+						<Title text="Lista De Favoritos" />
 					</Toolbar>
 				</headerToolbar>
                 <items>
@@ -80,8 +81,8 @@
                             <VBox alignItems="End">
                                 <Button
                                 text="Cambiar De Lista"
-                                press="onCambiarList"
-                                type="Neutral"/>
+                                press="onCambiarListFav"
+                                type="Default"/>
                             </VBox>
                         </HBox>
                     </CustomListItem>

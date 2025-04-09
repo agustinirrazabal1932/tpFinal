@@ -1,0 +1,29 @@
+.customHeaderLarge {
+    height: 55px !important; /* Nueva altura (ajusta según necesites) */
+    min-height:55px !important; /* Evita que se reduzca */
+}
+
+/* Ajusta los hijos para que se centren verticalmente */
+.customHeaderLarge .sapMBarChild {
+    height: 100%; /* Ocupa toda la altura del Bar */
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.customHeaderLarge .sapMBarMiddle {
+    display: flex;
+    justify-content: center; /* Centrado horizontal del título */
+}
+
+/* Ajusta el título para que sea más grande y se vea bien */
+.customHeaderLarge .sapMTitle {
+    font-family: "72Black", "72Blackfull", "72", "72full", Arial, Helvetica, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    color: #000;
+}
+/* Ajusta la imagen para que sea más grande */
+.customHeaderLarge .sapMImg {
+    width: 55px !important; /* Aumenta el tamaño de la imagen */
+    height: 25px !important;
+}

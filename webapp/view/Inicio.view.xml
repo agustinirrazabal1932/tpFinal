@@ -6,18 +6,27 @@
 	<Page
 		id="pageInicio">
 		<customHeader>
-			<Bar>
+			<Bar class="customHeaderLarge">
 				<contentLeft>
-					<Button
-						icon="sap-icon://menu2"
-						press=".onShowCategories"
-						visible="{appView>/smallScreenMode}"/>
+					<HBox alignItems="Center" justifyContent="Center" width="100%" >
+						<Image
+							src="img/logo.png"
+							width="24px"
+							height="24px"
+							alt="logo starWars"
+							class="sapUiSmallMarginEnd"/> <!-- Margen a la derecha -->
+						<Button
+							icon="sap-icon://menu2"
+							press=".onShowCategories"
+							visible="{appView>/smallScreenMode}"/>
+					</HBox>
 				</contentLeft>
-				<contentMiddle>
+				<contentMiddle >
 					<Title
-						level="H2"
+						level="H1"
 						tooltip="{i18n>welcomeDescription}"
-						text="{i18n>welcomeHeadline}"/>
+						text="Bienvenido a la tienda"
+						class="sapUiSmallMargin"/>
 				</contentMiddle>
 				<contentRight>
 					<Button
