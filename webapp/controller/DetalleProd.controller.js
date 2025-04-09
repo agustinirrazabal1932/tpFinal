@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller",
-	"sap/f/library"
-], function (JSONModel, Controller, fioriLibrary) {
+	"sap/f/library",
+	"sap/m/MessageToast",
+], function (JSONModel, Controller, fioriLibrary,MessageToast) {
 	"use strict";
 
 	// shortcut for sap.f.LayoutType
@@ -49,7 +50,8 @@ sap.ui.define([
 		// },
 		handleClose: function () {
 			//var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/beginColumn/closeColumn");
-			this.navigateToView("inicio");
+			//this.navigateToView("inicio");
+			this.oRouter.navTo("listCategory", {category: this._category, product: this._product});
 		},
 		navigateToView: function (sNextView) {
 			this.oRouter.navTo(sNextView);
@@ -105,6 +107,45 @@ sap.ui.define([
 				if(!bSeEncontroFav){
 					var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
 					aCartItems.push(oProduct);
+					MessageToast.show("Se cargo el producto "[oProduct.name]+" en el carrito");
+				}
+			}
+			oModel.setProperty("/carritoCompra", aCartItems);
+			oModel.setProperty("/carritoGuardar", aCartFavorito);
+			this._updateTotal();
+		},
+		onFavorito: function(oEvent){
+			var oProducto=this._getProduct();
+			let bSeEncontro=false;
+			let bSeEncontroCarrito=false;
+			let oModel = this.getView().getModel("carts");
+            let aCartItems = oModel.getProperty("/carritoCompra") || [];
+			let aCartFavorito = oModel.getProperty("/carritoGuardar") || [];
+
+			for (let i = 0; i < aCartFavorito.length; i++) {
+				let oProductoArray = aCartFavorito[i];
+				if (oProductoArray.name === oProducto.name) {
+					bSeEncontro=true;
+					// oProductoArray.quantity += 1;
+					MessageToast.show("Ya esta cargado en la lista de favorito");
+					break;
+				}
+			}
+			if(!bSeEncontro){
+
+				for (let i = 0; i < aCartItems.length; i++) {
+					let oProductoArray = aCartItems[i];
+					if (oProductoArray.name === oProducto.name) {
+						bSeEncontroCarrito=true;
+						// oProductoArray.quantity += 1;
+						MessageToast.show("el producto esta cargado en el carrito");
+						break;
+					}
+				}
+				if(!bSeEncontroCarrito){
+					var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
+					aCartFavorito.push(oProduct);
+					MessageToast.show("Se cargo el producto "[oProduct.name]+" a favoritos");
 				}
 			}
 			oModel.setProperty("/carritoCompra", aCartItems);

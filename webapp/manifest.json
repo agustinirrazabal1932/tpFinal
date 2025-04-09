@@ -35,6 +35,19 @@
     },
     "routing": {
 		"config": {
+
+
+			"sample": {
+				"stretch": true,
+				"files": [
+					"Inicio.view.xml",
+					"Inicio.controller.js",
+					"manifest.json"
+				]
+			},
+
+
+			
 			"routerClass": "sap.f.routing.Router",
 			"type": "View",
 			"viewType": "XML",

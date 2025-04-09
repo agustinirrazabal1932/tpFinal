@@ -32,9 +32,10 @@
                             <!-- Cantidad y botón -->
                             <VBox alignItems="End">
                             <Button
-                                text="Cambiar"
+                                text="Favorito"
                                 press="onCambiarListCarrito"
-                                type="Default"/>
+                                icon="sap-icon://add-favorite"
+								type="Success"/>
                             </VBox>
                         </HBox>
                     </CustomListItem>
@@ -80,9 +81,10 @@
                             <!-- Cantidad y botón -->
                             <VBox alignItems="End">
                                 <Button
-                                text="Cambiar De Lista"
+                                text="Carrito"
                                 press="onCambiarListFav"
-                                type="Default"/>
+                                icon="sap-icon://cart-2"
+								type="Emphasized"/>
                             </VBox>
                         </HBox>
                     </CustomListItem>

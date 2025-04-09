@@ -11,6 +11,9 @@
 				<f:heading>
 					<Title text="Products"/>
 				</f:heading>
+				<f:actions>
+                	<Button icon="sap-icon://nav-back" press="onAtras" type="Transparent"/>
+            	</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>
 

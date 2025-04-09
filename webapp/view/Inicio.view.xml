@@ -1,48 +1,100 @@
 <mvc:View
-	controllerName="ui5.ShopStarWars.controller.Inicio"
-	xmlns="sap.m"
-	xmlns:f="sap.f"
-	xmlns:mvc="sap.ui.core.mvc">
-	<Page
-		id="pageInicio">
-		<customHeader>
-			<Bar class="customHeaderLarge">
-				<contentLeft>
-					<HBox alignItems="Center" justifyContent="Center" width="100%" >
-						<Image
-							src="img/logo.png"
-							width="24px"
-							height="24px"
-							alt="logo starWars"
-							class="sapUiSmallMarginEnd"/> <!-- Margen a la derecha -->
-						<Button
-							icon="sap-icon://menu2"
-							press=".onShowCategories"
-							visible="{appView>/smallScreenMode}"/>
-					</HBox>
-				</contentLeft>
-				<contentMiddle >
-					<Title
-						level="H1"
-						tooltip="{i18n>welcomeDescription}"
-						text="Bienvenido a la tienda"
-						class="sapUiSmallMargin"/>
-				</contentMiddle>
-				<contentRight>
+    controllerName="ui5.ShopStarWars.controller.Inicio"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:cards="sap.f.cards"
+	xmlns:l="sap.ui.layout">
+    <f:DynamicPage 
+        id="dynamicPageId" 
+        toggleHeaderOnTitleClick="false">
+
+        <!-- Título con imagen de Star Wars -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+					<Title text="Bienvenido a la tienda"/>
+                </f:heading>
+				<f:actions>
 					<Button
-						icon="sap-icon://customer"
-						press=".onAvatarPress"
-						tooltip="{i18n>avatarButtonTooltip}"/>
+                            icon="sap-icon://customer"
+                            press=".onAvatarPress"
+                            tooltip="{i18n>avatarButtonTooltip}"/>
 					<ToggleButton
 						icon="sap-icon://cart"
 						pressed="{= ${appView>/layout}.startsWith('ThreeColumns') }"
 						tooltip="{i18n>toCartButtonTooltip}"
-						press=".onToggleCart">
-					</ToggleButton>
-				</contentRight>
-			</Bar>
-		</customHeader>
-	
-	</Page>
+						press=".onToggleCart"/>
+            	</f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
 
+        <!-- Contenido con barra de búsqueda y lista -->
+        <f:content>
+		
+			<Carousel
+				id="carouselInicio"
+				loop="true"
+    			showPageIndicator="true"
+				ariaLabelledBy="carouselTitle"
+				height="auto"
+				pages="{
+					path: 'products>/productosTodos'
+				}">
+				<customLayout>
+					<CarouselLayout visiblePagesCount="{config>/pagesCount}"/>
+				</customLayout>
+				<ScrollContainer
+
+					vertical="false"
+					horizontal="false"
+					class="sapUiContentPadding">
+
+					<f:Card>
+						<f:header>
+							<cards:Header
+								title="{products>name}"
+								subtitle="{products>/details/manufacturer}"
+								iconSrc="{products>image}"
+								iconDisplayShape="Square" />
+						</f:header>
+						<f:content>
+							<l:VerticalLayout class="sapUiContentPadding" width="100%">
+								<l:BlockLayout>
+									<l:BlockLayoutRow>
+										<l:BlockLayoutCell title="Informacion" width="1">
+											<HBox class="sapUiTinyMarginBottom">
+												<Label text="Descripcion:" />
+											</HBox>
+											<HBox class="sapUiSmallMarginBottom">
+												<Text text="{products>description}" />
+											</HBox>
+											<HBox class="sapUiTinyMarginBottom">
+												<Label text="Categoria:" />
+											</HBox>
+											<HBox class="sapUiSmallMarginBottom">
+												<Text text="{products>categories}" />
+											</HBox>
+											<HBox class="sapUiTinyMarginBottom">
+												<Label text="Precio:" />
+											</HBox>
+											<HBox class="sapUiSmallMarginBottom">
+												<ObjectNumber
+													number="{
+														parts:[{path:'products>price'},{path:'products>currency'}],
+														type: 'sap.ui.model.type.Currency',
+														formatOptions: {showMeasure: false}
+													}"
+													unit="{products>currency}" />
+											</HBox>
+										</l:BlockLayoutCell>
+									</l:BlockLayoutRow>
+								</l:BlockLayout>
+							</l:VerticalLayout>
+						</f:content>
+					</f:Card>
+				</ScrollContainer>
+			</Carousel>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

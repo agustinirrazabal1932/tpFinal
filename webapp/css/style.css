@@ -1,7 +1,7 @@
-.customHeaderLarge {
-    height: 55px !important; /* Nueva altura (ajusta según necesites) */
-    min-height:55px !important; /* Evita que se reduzca */
-}
+/* .customHeaderLarge {
+    height: 60px !important; Nueva altura (ajusta según necesites)
+    min-height:60px !important; Evita que se reduzca
+} */
 
 /* Ajusta los hijos para que se centren verticalmente */
 .customHeaderLarge .sapMBarChild {

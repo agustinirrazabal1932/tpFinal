@@ -27,6 +27,9 @@ sap.ui.define([
 			this.oRouter.navTo("detalleProducto", {category: this._category, product: product});
 			
 		},
+		onAtras: function(){
+			this.oRouter.navTo("inicio");
+		},
 		onSearch: function (oEvent) {
 			var oTableSearchState = [],
 				sQuery = oEvent.getParameter("query");
