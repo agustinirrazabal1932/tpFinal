@@ -56,7 +56,7 @@
 						<navigationActions>
 							<!-- <m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" />
 							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/> -->
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close middle column" />
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close middle column" visible="false" />
 						</navigationActions>
 
 					</ObjectPageDynamicHeaderTitle>
@@ -70,8 +70,12 @@
 								  class="sapUiTinyMarginEnd">
 						</m:Avatar>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Menu de Categoria"/>
-							<m:Text text="{products>categories}"/>
+							<m:Label text="Rating"/>
+							<m:RatingIndicator
+                                    maxValue="5"
+                                    value="{products>rating}"
+                                    enabled="false"
+                                    tooltip="{products>rating}/5" />
 						</m:VBox>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 							<m:Label text="Stock"/>
@@ -136,6 +140,36 @@
 									<m:Text text="{products>details/manufacturer}"/>
 								</form:content>
 							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Imagen">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:VBox
+								alignItems="Center"
+								renderType="Div">
+								<m:Image
+									id="productImage"
+									src="../../../../../../../{products>image}"
+									decorative="true"
+									densityAware="false"
+									class="sapUiSmallMargin"
+									width="100%"
+									height="100%">
+									<m:detailBox>
+										<m:LightBox id="lightBox">
+											<m:imageContent>
+												<m:LightBoxItem
+													imageSrc="../../../../../../../{products>image}"
+													title="{name}"/>
+											</m:imageContent>
+										</m:LightBox>
+									</m:detailBox>
+								</m:Image>
+							</m:VBox>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

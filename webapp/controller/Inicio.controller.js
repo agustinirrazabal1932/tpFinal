@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/Device",
     "sap/f/library",
     "sap/ui/model/json/JSONModel",
-    "sap/m/library"
-], (Controller,Device,fioriLibrary,JSONModel,library) => {
+    "sap/m/library",
+    "sap/m/MessageToast",
+], (Controller,Device,fioriLibrary,JSONModel,library,MessageToast) => {
     "use strict";
     var LayoutType = fioriLibrary.LayoutType;
 
@@ -43,5 +44,17 @@ sap.ui.define([
 
 			this.oRouter.navTo(bPressed ? "cart" : "inicio");
 		},
+		onCardPress: function (oEvent) {
+            // Obtener el contexto de la tarjeta clicada
+            var oHeader = oEvent.getSource();
+            var oBindingContext = oHeader.getBindingContext("products");
+            var oProduct = oBindingContext.getObject();
+
+            // Ejemplo: Mostrar un mensaje con el nombre del producto
+            //MessageToast.show("Producto seleccionado: " + oProduct.name);
+            let productPath = oBindingContext.getPath(),//obtiene la ruat del producto seleccionado
+				product = productPath.split("/").slice(-1).pop();//devuelve el indice del producto
+            this.oRouter.navTo("detalleProducto", {category: oProduct.categories, product: product});
+		}
     });
 });

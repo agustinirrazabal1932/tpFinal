@@ -107,7 +107,7 @@ sap.ui.define([
 				if(!bSeEncontroFav){
 					var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
 					aCartItems.push(oProduct);
-					MessageToast.show("Se cargo el producto "[oProduct.name]+" en el carrito");
+					MessageToast.show("Se cargo el producto "+[oProducto.name]+" en el carrito");
 				}
 			}
 			oModel.setProperty("/carritoCompra", aCartItems);
@@ -145,7 +145,7 @@ sap.ui.define([
 				if(!bSeEncontroCarrito){
 					var oProduct = Object.assign({ name: oProducto.name, image:oProducto.image , price: oProducto.price, quantity: 1 }, oProduct);
 					aCartFavorito.push(oProduct);
-					MessageToast.show("Se cargo el producto "[oProduct.name]+" a favoritos");
+					MessageToast.show("Se cargo el producto "+[oProduct.name]+" a favoritos");
 				}
 			}
 			oModel.setProperty("/carritoCompra", aCartItems);

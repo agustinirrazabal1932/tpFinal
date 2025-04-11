@@ -6,7 +6,7 @@
 	xmlns:cards="sap.f.cards"
 	xmlns:l="sap.ui.layout">
     <f:DynamicPage 
-        id="dynamicPageId" 
+        id="dynamicPageInicio" 
         toggleHeaderOnTitleClick="false">
 
         <!-- Título con imagen de Star Wars -->
@@ -36,7 +36,6 @@
 				id="carouselInicio"
 				loop="true"
     			showPageIndicator="true"
-				ariaLabelledBy="carouselTitle"
 				height="auto"
 				pages="{
 					path: 'products>/productosTodos'
@@ -50,13 +49,14 @@
 					horizontal="false"
 					class="sapUiContentPadding">
 
-					<f:Card>
-						<f:header>
+					<f:Card >
+						<f:header >
 							<cards:Header
 								title="{products>name}"
-								subtitle="{products>/details/manufacturer}"
+								subtitle="{products>details/manufacturer}"
 								iconSrc="{products>image}"
-								iconDisplayShape="Square" />
+								iconDisplayShape="Square"
+								press=".onCardPress"/>
 						</f:header>
 						<f:content>
 							<l:VerticalLayout class="sapUiContentPadding" width="100%">
@@ -64,10 +64,14 @@
 									<l:BlockLayoutRow>
 										<l:BlockLayoutCell title="Informacion" width="1">
 											<HBox class="sapUiTinyMarginBottom">
-												<Label text="Descripcion:" />
+												<Label text="Ranting:" />
 											</HBox>
 											<HBox class="sapUiSmallMarginBottom">
-												<Text text="{products>description}" />
+												<RatingIndicator
+													maxValue="5"
+													value="{products>rating}"
+													enabled="false"
+													tooltip="{products>rating}/5" />
 											</HBox>
 											<HBox class="sapUiTinyMarginBottom">
 												<Label text="Categoria:" />

@@ -9,10 +9,10 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="Products"/>
+					<Title text="Productos"/>
 				</f:heading>
 				<f:actions>
-                	<Button icon="sap-icon://nav-back" press="onAtras" type="Transparent"/>
+                	<Button id="botonAtrasCategorias" icon="sap-icon://nav-back" press="onAtras" type="Transparent"/>
             	</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -48,7 +48,7 @@
 				<items>
 					<ColumnListItem type="Navigation">
 						<cells>
-							<ObjectIdentifier title="{products>name}" text="{products>id}" />
+							<ObjectIdentifier title="{products>name}" text="{products>details/manufacturer}" />
 							<ObjectNumber
 									number="{
 										parts:[{path:'products>price'},{path:'products>currency'}],

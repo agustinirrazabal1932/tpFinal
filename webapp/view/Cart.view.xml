@@ -60,8 +60,7 @@
                 growing="true"
                 growingThreshold="5"
                 delete=".onEliminardelCarritoFav"
-                mode="Delete"
-                icon="sap-icon://favorite-list">
+                mode="Delete">
                 <headerToolbar>
 					<Toolbar>
 						<Title text="Lista De Favoritos" />

@@ -31,6 +31,27 @@ sap.ui.define([
             oModel.setProperty("/total", fTotal.toFixed(2));
         },
         onCheckout: function(){
+
+            let oModel = this.getView().getModel("carts"),
+                aCartItems = oModel.getProperty("/carritoCompra") || [];
+
+            MessageBox.show(("¿Esta seguro que desea hacer la compra?"), {
+                title: "Aviso",
+                actions: [
+                    MessageBox.Action.OK,
+                    MessageBox.Action.CANCEL
+                ],
+                onClose: function (oAction) {
+                    if (oAction !== MessageBox.Action.OK) {
+                        return;
+                    }
+                    MessageBox.show("!!FELICIDADES SU COMPRA SE EJECUTO CON EXITO¡¡")
+                    aCartItems=[];
+                    oModel.setProperty("/carritoCompra", aCartItems);
+                    this._updateTotal();
+
+                }
+            });
         },
         onEliminardelCarrito: function(oEvent){
             let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
@@ -60,7 +81,7 @@ sap.ui.define([
                     if(iProduct>-1){
                         aCartItems.splice(iProduct, 1);
                         oModel.setProperty("/carritoCompra", aCartItems);
-                        this._updateTotal();
+                        //this._updateTotal();
                     }
                     MessageToast.show("Se eliminado el Producto "+ [sNombre]);
                 }

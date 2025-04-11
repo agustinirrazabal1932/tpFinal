@@ -26,7 +26,6 @@ sap.ui.define([
 					break;
 				}
 			}
-			console.log({sCategory})
 
 			if (bPhone) {
 				//this.oRouter.navTo("detail", {layout: LayoutType.OneColumn, category: sCategory});

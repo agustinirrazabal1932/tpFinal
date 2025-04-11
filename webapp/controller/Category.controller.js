@@ -21,10 +21,13 @@ sap.ui.define([
 			this.oRouter.getRoute("detalleProducto").attachPatternMatched(this._onCategoryMatched, this);
 		},
 		onListItemPress: function (oEvent) {
+
+
 			var productPath = oEvent.getSource().getSelectedItem().getBindingContext("products").getPath(),//obtiene la ruat del producto seleccionado
 				product = productPath.split("/").slice(-1).pop();//devuelve el indice del producto
 
 			this.oRouter.navTo("detalleProducto", {category: this._category, product: product});
+
 			
 		},
 		onAtras: function(){

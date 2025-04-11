@@ -4,17 +4,20 @@
 	xmlns="sap.m"
 	xmlns:f="sap.f"
 	xmlns:mvc="sap.ui.core.mvc">
-	<App
-		id="app"
-		class="sapUiDemoCart">
+	<App id="app" class="sapUiDemoCart">
+	
 		<f:FlexibleColumnLayout
 			id="fcl"
 			layout="{appView>/layout}"
 			backgroundDesign="Translucent"
 			stateChange=".onStateChange">
 		</f:FlexibleColumnLayout>
+	
+		
 	</App>
 </mvc:View>
+
+
 <!-- <l:Splitter height="500px" width="100%">
 			<FlexibleColumnLayout id="fcl"
 			stateChange="onStateChanged"
