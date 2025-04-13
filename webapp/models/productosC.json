@@ -30,7 +30,7 @@
       "price": 79.99,
       "currency": "USD",
       "description": "Figura de acción detallada de Luke Skywalker con múltiples puntos de movilidad y accesorios intercambiables.",
-      "image": "almacen/images/luke.png",
+      "image": "models/images/luke.png",
       "stock": 25,
       "rating": 4.5,
       "details": {
@@ -47,7 +47,7 @@
       "price": 99.99,
       "currency": "USD",
       "description": "Figura de acción detallada de Luke Skywalker con múltiples puntos de movilidad y accesorios intercambiables.",
-      "image": "almacen/images/lukeE.png",
+      "image": "models/images/lukeE.png",
       "stock": 10,
       "rating": 4.5,
       "details": {
@@ -65,7 +65,7 @@
       "price": 79.99,
       "currency": "USD",
       "description": "Figura de acción de Leia Organa con detalle en vestuario y accesorios característicos.",
-      "image": "almacen/images/leia.png",
+      "image": "models/images/leia.png",
       "stock": 30,
       "rating": 4.7,
       "details": {
@@ -83,7 +83,7 @@
       "categories":"Figuras de Acción",
       "currency": "USD",
       "description": "Figura de acción de Leia Organa con detalle en vestuario y accesorios característicos.",
-      "image": "almacen/images/leiaE.png",
+      "image": "models/images/leiaE.png",
       "rating": 4.7,
       "details": {
         "height": "20 cm",
@@ -99,7 +99,7 @@
       "price": 99.99,
       "currency": "USD",
       "description": "Figura imponente de Darth Vader con capa, máscara articulada y espada de luz.",
-      "image": "almacen/images/darthVader.png",
+      "image": "models/images/darthVader.png",
       "stock": 20,
       "rating": 4.8,
       "details": {
@@ -117,7 +117,7 @@
       "categories":"Figuras de Acción",
       "currency": "USD",
       "description": "Figura imponente de Darth Vader con capa, máscara articulada y espada de luz.",
-      "image": "almacen/images/darthVaderE.png",
+      "image": "models/images/darthVaderE.png",
       "rating": 4.8,
       "details": {
         "height": "22 cm",
@@ -133,7 +133,7 @@
       "price": 89.99,
       "currency": "USD",
       "description": "Figura de acción de Kylo Ren con detalles en su casco y capa, confeccionada con gran realismo.",
-      "image": "almacen/images/kyloRen.png",
+      "image": "models/images/kyloRen.png",
       "stock": 15,
       "rating": 4.3,
       "details": {
@@ -150,7 +150,7 @@
       "price": 99.99,
       "currency": "USD",
       "description": "Figura de acción de Kylo Ren con detalles en su casco y capa, confeccionada con gran realismo.",
-      "image": "almacen/images/kyloRenE.png",
+      "image": "models/images/kyloRenE.png",
       "stock": 5,
       "rating": 4.3,
       "details": {
@@ -167,7 +167,7 @@
       "price": 199.99,
       "currency": "USD",
       "description": "Réplica de sable de luz inspirada en el de Luke Skywalker, ideal para exhibición o coleccionismo.",
-      "image": "almacen/images/sable_LukeSky.png",
+      "image": "models/images/sable_LukeSky.png",
       "stock": 10,
       "rating": 4.6,
       "details": {
@@ -184,7 +184,7 @@
       "price": 209.99,
       "currency": "USD",
       "description": "Réplica de sable de luz rojo, emblemática en la figura de Darth Vader.",
-      "image": "almacen/images/sable_DarthV.png",
+      "image": "models/images/sable_DarthV.png",
       "stock": 8,
       "rating": 4.7,
       "details": {
@@ -201,7 +201,7 @@
       "price": 29.99,
       "currency": "USD",
       "description": "Poster de alta calidad con impresión de una épica batalla espacial en el universo Star Wars.",
-      "image": "almacen/images/poster_batalla.png",
+      "image": "models/images/poster_batalla.png",
       "stock": 50,
       "rating": 4.2,
       "details": {
@@ -218,7 +218,7 @@
       "price": 14.99,
       "currency": "USD",
       "description": "Taza temática con diseños icónicos de Star Wars para los fans más apasionados.",
-      "image": "almacen/images/taza_starWars.png",
+      "image": "models/images/taza_starWars.png",
       "stock": 100,
       "rating": 4.0,
       "details": {
@@ -235,7 +235,7 @@
       "price": 299.99,
       "currency": "USD",
       "description": "Modelo a escala del icónico caza estelar X-Wing con detalles precisos y partes móviles.",
-      "image": "almacen/images/nave_xWing.png",
+      "image": "models/images/nave_xWing.png",
       "stock": 5,
       "rating": 4.8,
       "details": {
@@ -252,7 +252,7 @@
       "price": 499.99,
       "currency": "USD",
       "description": "Magnífico modelo a escala del Destructor Estelar con múltiples detalles, ideal para los coleccionistas.",
-      "image": "almacen/images/nave_Destructor.png",
+      "image": "models/images/nave_Destructor.png",
       "stock": 3,
       "rating": 4.9,
       "details": {
@@ -269,7 +269,7 @@
       "price": 69.99,
       "currency": "USD",
       "description": "Figura de acción de Yoda con detalles en su túnica y bastón, perfecta para fans de la saga.",
-      "image": "almacen/images/yoda.png",
+      "image": "models/images/yoda.png",
       "stock": 20,
       "rating": 4.6,
       "details": {
@@ -286,7 +286,7 @@
       "price": 79.99,
       "currency": "USD",
       "description": "Figura de Han Solo con su icónica chaqueta y blaster, lista para cualquier aventura.",
-      "image": "almacen/images/hanSolo.png",
+      "image": "models/images/hanSolo.png",
       "stock": 18,
       "rating": 4.5,
       "details": {
@@ -303,7 +303,7 @@
       "price": 89.99,
       "currency": "USD",
       "description": "Figura de Chewbacca con detalles en su pelaje y ballesta, un imprescindible para coleccionistas.",
-      "image": "almacen/images/chewbacca.png",
+      "image": "models/images/chewbacca.png",
       "stock": 15,
       "rating": 4.7,
       "details": {
@@ -320,7 +320,7 @@
       "price": 59.99,
       "currency": "USD",
       "description": "Figura de R2-D2 con detalles mecánicos y partes móviles, ideal para fans de los droides.",
-      "image": "almacen/images/r2d2.png",
+      "image": "models/images/r2d2.png",
       "stock": 25,
       "rating": 4.4,
       "details": {
@@ -337,7 +337,7 @@
       "price": 199.99,
       "currency": "USD",
       "description": "Réplica del sable de luz de Obi-Wan Kenobi con detalles auténticos y empuñadura metálica.",
-      "image": "almacen/images/sable_ObiWan.png",
+      "image": "models/images/sable_ObiWan.png",
       "stock": 12,
       "rating": 4.6,
       "details": {
@@ -354,7 +354,7 @@
       "price": 189.99,
       "currency": "USD",
       "description": "Réplica del sable de luz de Rey con diseño fiel a las secuelas de Star Wars.",
-      "image": "almacen/images/sable_Rey.png",
+      "image": "models/images/sable_Rey.png",
       "stock": 10,
       "rating": 4.5,
       "details": {
@@ -371,7 +371,7 @@
       "price": 399.99,
       "currency": "USD",
       "description": "Modelo a escala del Halcón Milenario con interiores detallados y luces LED.",
-      "image": "almacen/images/nave_Halcon.png",
+      "image": "models/images/nave_Halcon.png",
       "stock": 4,
       "rating": 4.9,
       "details": {
@@ -388,7 +388,7 @@
       "price": 249.99,
       "currency": "USD",
       "description": "Modelo a escala del TIE Fighter con alas articuladas y acabado metálico.",
-      "image": "almacen/images/nave_TIE.png",
+      "image": "models/images/nave_TIE.png",
       "stock": 6,
       "rating": 4.7,
       "details": {
@@ -405,7 +405,7 @@
       "price": 149.99,
       "currency": "USD",
       "description": "Réplica a escala real del casco de un Stormtrooper, ideal para cosplay o exhibición.",
-      "image": "almacen/images/casco_Stormtrooper.png",
+      "image": "models/images/casco_Stormtrooper.png",
       "stock": 8,
       "rating": 4.6,
       "details": {
@@ -422,7 +422,7 @@
       "price": 34.99,
       "currency": "USD",
       "description": "Poster de alta calidad con una escena de la batalla en la luna de Endor.",
-      "image": "almacen/images/poster_Endor.png",
+      "image": "models/images/poster_Endor.png",
       "stock": 40,
       "rating": 4.3,
       "details": {
@@ -439,7 +439,7 @@
       "price": 64.99,
       "currency": "USD",
       "description": "Figura de BB-8 con movimiento y detalles fieles al droide de las secuelas.",
-      "image": "almacen/images/bb8.png",
+      "image": "models/images/bb8.png",
       "stock": 22,
       "rating": 4.5,
       "details": {
@@ -456,7 +456,7 @@
       "price": 99.99,
       "currency": "USD",
       "description": "Figura de acción del Mandaloriano con armadura detallada y Baby Yoda incluido.",
-      "image": "almacen/images/mandalorian.png",
+      "image": "models/images/mandalorian.png",
       "stock": 15,
       "rating": 4.8,
       "details": {
@@ -473,7 +473,7 @@
       "price": 219.99,
       "currency": "USD",
       "description": "Réplica del sable de luz púrpura de Mace Windu, con empuñadura metálica.",
-      "image": "almacen/images/sable_MaceWindu.png",
+      "image": "models/images/sable_MaceWindu.png",
       "stock": 7,
       "rating": 4.7,
       "details": {
@@ -490,7 +490,7 @@
       "price": 349.99,
       "currency": "USD",
       "description": "Modelo a escala del caminante AT-AT con patas articuladas y detalles realistas.",
-      "image": "almacen/images/nave_ATAT.png",
+      "image": "models/images/nave_ATAT.png",
       "stock": 5,
       "rating": 4.8,
       "details": {
@@ -507,7 +507,7 @@
       "price": 24.99,
       "currency": "USD",
       "description": "Camiseta con diseño de la Estrella de la Muerte, perfecta para fans de Star Wars.",
-      "image": "almacen/images/camiseta_DeathStar.png",
+      "image": "models/images/camiseta_DeathStar.png",
       "stock": 60,
       "rating": 4.2,
       "details": {

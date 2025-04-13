@@ -29,35 +29,16 @@
 
 						<actions>
 							<m:Button
-									text="Agregar"
+									text="{i18n>addToCartButtonDetail}"
 									icon="sap-icon://cart-2"
 									type="Emphasized"
 									press="onComprar"/>
 							<m:Button
-									text="Favorito"
+									text="{i18n>favoriteButtonDetail}"
 									icon="sap-icon://add-favorite"
 									type="Success"
 									press="onFavorito"/>
-							<!-- <m:Button
-									text="Delete"
-									type="Transparent"/>
-							<m:Button
-									text="Copy"
-									type="Transparent"/>
-							<m:Button
-									text="Toggle Footer"
-									type="Transparent"
-									press="onToggleFooter"/>
-							<m:Button
-									icon="sap-icon://action"
-									type="Transparent"/> -->
 						</actions>
-
-						<navigationActions>
-							<!-- <m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" />
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/> -->
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close middle column" visible="false" />
-						</navigationActions>
 
 					</ObjectPageDynamicHeaderTitle>
 				</headerTitle>
@@ -70,7 +51,7 @@
 								  class="sapUiTinyMarginEnd">
 						</m:Avatar>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Rating"/>
+							<m:Label text="{i18n>ratingLabelDetail}"/>
 							<m:RatingIndicator
                                     maxValue="5"
                                     value="{products>rating}"
@@ -78,18 +59,18 @@
                                     tooltip="{products>rating}/5" />
 						</m:VBox>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Stock"/>
+							<m:Label text="{i18n>stockLabelDetail}"/>
 							<m:ObjectNumber number="{products>stock}"/>
 						</m:VBox>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Price"/>
-							<m:ObjectNumber number="{products>currency} {products>price}" emphasized="false"/>
+							<m:Label text="{i18n>priceLabelDetail}"/>
+							<m:ObjectNumber number="{products>currency} {products>price}" />
 						</m:VBox>
 					</m:FlexBox>
 				</headerContent>
 
 		<sections>
-			<ObjectPageSection title="General Information">
+			<ObjectPageSection title="{i18n>generalInfoSectionDetail}">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
@@ -104,9 +85,9 @@
 								columnsL="1"
 								columnsM="1">
 								<form:content>
-									<m:Label text="Producto ID"/>
+									<m:Label text="{i18n>productIdLabelDetail}"/>
 									<m:Text text="{products>id}"/>
-									<m:Label text="Descripcion"/>
+									<m:Label text="{i18n>descriptionLabelDetail}"/>
 									<m:Text text="{products>description}"/>
 								</form:content>
 							</form:SimpleForm>
@@ -115,7 +96,7 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="Detalles">
+			<ObjectPageSection title="{i18n>detailsSectionDetail}">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
@@ -130,21 +111,31 @@
 								columnsL="1"
 								columnsM="1">
 								<form:content>
-									<m:Label text="Altura"/>
-									<m:Text text="{products>details/height}"/>
-									<m:Label text="Material Del Producto"/>
+									<m:Label text="{i18n>heightLabelDetail}" visible="{= !!${products>details/height}}"/>
+									<m:Text text="{products>details/height}" visible="{= !!${products>details/height}}"/>
+									<m:Label text="{i18n>lengthLabelDetail}" visible="{= !!${products>details/length}}"/>
+									<m:Text text="{products>details/length}" visible="{= !!${products>details/length}}"/>
+									<m:Label text="{i18n>dimensionsLabelDetail}" visible="{= !!${products>details/dimensions}}"/>
+									<m:Text text="{products>details/dimensions}" visible="{= !!${products>details/dimensions}}"/>
+									<m:Label text="{i18n>sizeLabelDetail}" visible="{= !!${products>details/size}}"/>
+									<m:Text text="{products>details/size}" visible="{= !!${products>details/size}}"/>
+									<m:Label text="{i18n>capacityLabelDetail}" visible="{= !!${products>details/capacity}}"/>
+									<m:Text text="{products>details/capacity}" visible="{= !!${products>details/capacity}}"/>
+									<m:Label text="{i18n>scaleLabelDetail}" visible="{= !!${products>details/scale}}"/>
+									<m:Text text="{products>details/scale}" visible="{= !!${products>details/scale}}"/>
+									<m:Label text="{i18n>materialLabelDetail}"/>
 									<m:Text text="{products>details/material}"/>
-									<m:Label text="Fabricante"/>
+									<m:Label text="{i18n>manufacturerLabelDetail}"/>
 									<m:Text text="{products>details/manufacturer}"/>
-									<m:Label text="Peso"/>
-									<m:Text text="{products>details/manufacturer}"/>
+									<m:Label text="{i18n>weightLabelDetail}"/>
+									<m:Text text="{products>details/weight}"/>
 								</form:content>
 							</form:SimpleForm>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<ObjectPageSection title="Imagen">
+			<ObjectPageSection title="{i18n>imageSectionDetail}">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
@@ -158,13 +149,15 @@
 									densityAware="false"
 									class="sapUiSmallMargin"
 									width="100%"
-									height="100%">
+									height="100%"
+									alt="{i18n>productImageAltDetail}">
 									<m:detailBox>
 										<m:LightBox id="lightBox">
 											<m:imageContent>
 												<m:LightBoxItem
 													imageSrc="../../../../../../../{products>image}"
-													title="{name}"/>
+													title="{name}"
+													alt="{i18n>productImageAltDetail}"/>
 											</m:imageContent>
 										</m:LightBox>
 									</m:detailBox>

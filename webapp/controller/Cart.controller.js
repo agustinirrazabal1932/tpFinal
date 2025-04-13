@@ -1,38 +1,31 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
-    "sap/f/library",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-], (Controller,JSONModel,fioriLibrary,MessageToast,MessageBox) => {
+], (Controller,MessageToast,MessageBox) => {
     "use strict";
-    var LayoutType = fioriLibrary.LayoutType;
 
     return Controller.extend("ui5.ShopStarWars.controller.Cart", {
         onInit() {
+            //recupero router
             this.oRouter = this.getOwnerComponent().getRouter();
-            //this._updateTotal();
+
         },
-        onBack: function (oEvent) {
-            var oHistory = History.getInstance();
-			var oPrevHash = oHistory.getPreviousHash();
-			if (oPrevHash !== undefined) {
-				window.history.go(-1);
-			} else {
-                this.oRouter.navTo("inicio");
-			}
-		},
+        //actualizar valor del total de compra
         _updateTotal: function() {
             let oModel = this.getView().getModel("carts");
             let aItems =oModel.getProperty("/carritoCompra") || [];
             let fTotal = aItems.reduce(function(sum, item) {
                 return sum + (item.price * item.quantity);
             }, 0);
+            console.log([ fTotal.toFixed(2)]);
             oModel.setProperty("/total", fTotal.toFixed(2));
         },
+        //para proceder a la compra
         onCheckout: function(){
 
             let oModel = this.getView().getModel("carts"),
+                estado_f= this,
                 aCartItems = oModel.getProperty("/carritoCompra") || [];
 
             MessageBox.show(("¿Esta seguro que desea hacer la compra?"), {
@@ -48,16 +41,18 @@ sap.ui.define([
                     MessageBox.show("!!FELICIDADES SU COMPRA SE EJECUTO CON EXITO¡¡")
                     aCartItems=[];
                     oModel.setProperty("/carritoCompra", aCartItems);
-                    this._updateTotal();
+                    estado_f._updateTotal();
 
                 }
             });
         },
+        //funcion para eliminar del carrito
         onEliminardelCarrito: function(oEvent){
             let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
                 oProduct=oBindingContext.getObject(),
                 sNombre=oProduct.name,
                 oModel = this.getView().getModel("carts"),
+                estado_f= this,
                 aCartItems = oModel.getProperty("/carritoCompra") || [],
                 iProduct=-1;
             MessageBox.show(("¿Desea eliminar Este Item?"), {
@@ -81,12 +76,16 @@ sap.ui.define([
                     if(iProduct>-1){
                         aCartItems.splice(iProduct, 1);
                         oModel.setProperty("/carritoCompra", aCartItems);
-                        //this._updateTotal();
+                        estado_f._updateTotal();
                     }
                     MessageToast.show("Se eliminado el Producto "+ [sNombre]);
                 }
+                
             });
+           
+            
         },
+        //funcion del boton para cambiar de la lista del carrito a la lista de favoritos
         onCambiarListCarrito: function(oEvent){
             let oButton = oEvent.getSource();
             let oListItem = oButton.getParent(); // El HBox
@@ -119,6 +118,7 @@ sap.ui.define([
 			oModel.setProperty("/carritoGuardar", aCartFavorito);
 			this._updateTotal();
         },
+        //funcion que se activa cuando eliminamos del carrito de favorito
         onEliminardelCarritoFav: function(oEvent){
             let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
                 oProduct=oBindingContext.getObject(),
@@ -152,6 +152,7 @@ sap.ui.define([
                 }
             });
         },
+        // funcion del boton para cambiar de la lista del favorito a la lista de carrito
         onCambiarListFav: function(oEvent){
             let oButton = oEvent.getSource();
             let oListItem = oButton.getParent(); // El HBox

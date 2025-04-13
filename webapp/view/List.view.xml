@@ -6,9 +6,9 @@
 	<f:DynamicPage id="dinamicaPagina" toggleHeaderOnTitleClick="false">
 		<!-- DynamicPage Title -->
 		<f:title>
-			<f:DynamicPageTitle>
+			<f:DynamicPageTitle  class="customPageTitleDinamyc">
 				<f:heading>
-					<Title text="Categorias"/>
+					<Title text="{i18n>categoriesTitle}"/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -28,10 +28,10 @@
 					width="auto">
 					<columns>
 						<Column width="12em">
-							<Text text="Categoria" />
+							<Text text="{i18n>categoryColumn}" />
 						</Column>
 						<Column	hAlign="End">
-							<Text text="Numero de items" />
+							<Text text="{i18n>itemsCountColumn}" />
 						</Column>
 					</columns>
 					<items>
@@ -51,9 +51,9 @@
 				<Image
 					id="imagenLista"
 					src="/img/baner.png"
-					alt="imagen abajo"
+					alt="{i18n>imageAltText}"
 					width="100%"
-					height="355px"
+					height="100%"
 					class="sapUiSmallMarginTop" />
 			</VBox>
 		</f:content>

@@ -6,20 +6,15 @@
 	xmlns:cards="sap.f.cards"
 	xmlns:l="sap.ui.layout">
     <f:DynamicPage 
-        id="dynamicPageInicio" 
+        id="dynamicPageInicio"
         toggleHeaderOnTitleClick="false">
 
-        <!-- Título con imagen de Star Wars -->
         <f:title>
             <f:DynamicPageTitle>
                 <f:heading>
-					<Title text="Bienvenido a la tienda"/>
+					<Title text="{i18n>welcomeTitle}"/>
                 </f:heading>
 				<f:actions>
-					<Button
-                            icon="sap-icon://customer"
-                            press=".onAvatarPress"
-                            tooltip="{i18n>avatarButtonTooltip}"/>
 					<ToggleButton
 						icon="sap-icon://cart"
 						pressed="{= ${appView>/layout}.startsWith('ThreeColumns') }"
@@ -29,7 +24,6 @@
             </f:DynamicPageTitle>
         </f:title>
 
-        <!-- Contenido con barra de búsqueda y lista -->
         <f:content>
 		
 			<Carousel
@@ -62,9 +56,9 @@
 							<l:VerticalLayout class="sapUiContentPadding" width="100%">
 								<l:BlockLayout>
 									<l:BlockLayoutRow>
-										<l:BlockLayoutCell title="Informacion" width="1">
+										<l:BlockLayoutCell title="{i18n>informationTitle}" width="1">
 											<HBox class="sapUiTinyMarginBottom">
-												<Label text="Ranting:" />
+												<Label text="{i18n>ratingLabel}" />
 											</HBox>
 											<HBox class="sapUiSmallMarginBottom">
 												<RatingIndicator
@@ -74,13 +68,13 @@
 													tooltip="{products>rating}/5" />
 											</HBox>
 											<HBox class="sapUiTinyMarginBottom">
-												<Label text="Categoria:" />
+												<Label text="{i18n>categoryLabel}" />
 											</HBox>
 											<HBox class="sapUiSmallMarginBottom">
 												<Text text="{products>categories}" />
 											</HBox>
 											<HBox class="sapUiTinyMarginBottom">
-												<Label text="Precio:" />
+												<Label text="{i18n>priceLabel}" />
 											</HBox>
 											<HBox class="sapUiSmallMarginBottom">
 												<ObjectNumber

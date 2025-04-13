@@ -2,37 +2,36 @@
 	controllerName="ui5.ShopStarWars.controller.Cart"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
-	<Page title="Carrito de Compras">
+	<Page class="customPageTitle" title="Carrito de Compras">
         <content>
             <List
                 id="cartList"
                 items="{
         			path: 'carts>/carritoCompra'
 				}"
+                class="favoritesList"
                 growing="true"
                 growingThreshold="5"
                 delete=".onEliminardelCarrito"
                 mode="Delete">
-                <headerToolbar>
+                <headerToolbar >
 					<Toolbar>
-						<Title text="Lista Para Comprar"/>
+						<Title text="{i18n>shoppingListTitle}"/>
 					</Toolbar>
 				</headerToolbar>
                 <items>
                     <CustomListItem>
                         <HBox alignItems="Center" justifyContent="SpaceBetween">
-                            <!-- Información del producto -->
                             <VBox class="sapUiSmallMargin">
 								<Image src="../{carts>image}" width="100px"/>
                                 <Text text="{carts>name}"/>
-								<Text text="Cantidad: {carts>quantity}"/>
-                                <Text text="Precio: {carts>price}"/>
-                                <Text text="Subtotal: {= ${carts>price} * ${carts>quantity}}"/>
+								<Text text="{i18n>quantityLabel} {carts>quantity}"/>
+                                <Text text="{i18n>priceLabel} {carts>price}"/>
+                                <Text text="{i18n>subtotalLabel} {= ${carts>price} * ${carts>quantity}}"/>
                             </VBox>
-                            <!-- Cantidad y botón -->
                             <VBox alignItems="End">
                             <Button
-                                text="Favorito"
+                                text="{i18n>favoriteButton}"
                                 press="onCambiarListCarrito"
                                 icon="sap-icon://add-favorite"
 								type="Success"/>
@@ -44,11 +43,11 @@
             <Toolbar>
                 <ToolbarSpacer/>
                 <Button
-                    text="Proceder al Pago"
+                    text="{i18n>checkoutButton}"
                     press="onCheckout"
                     type="Accept"/>
 
-                <Text text="Total:{carts>/total}"/>
+                <Text text="{i18n>totalLabel}{carts>/total}"/>
                 
             </Toolbar>
 
@@ -63,24 +62,24 @@
                 mode="Delete">
                 <headerToolbar>
 					<Toolbar>
-						<Title text="Lista De Favoritos" />
+						<Title text="{i18n>favoritesListTitle}" />
 					</Toolbar>
 				</headerToolbar>
                 <items>
                     <CustomListItem>
                         <HBox alignItems="Center" justifyContent="SpaceBetween">
-                            <!-- Información del producto -->
+                           
                             <VBox class="sapUiSmallMargin">
 								<Image src="../{carts>image}" width="100px"/>
                                 <Text text="{carts>name}"/>
-								<Text text="Cantidad: {carts>quantity}"/>
-                                <Text text="Precio: {carts>price}"/>
-                                <Text text="Subtotal: {= ${carts>price} * ${carts>quantity}}"/>
+								<Text text="{i18n>quantityLabel} {carts>quantity}"/>
+                                <Text text="{i18n>priceLabel} {carts>price}"/>
+                                <Text text="{i18n>subtotalLabel} {= ${carts>price} * ${carts>quantity}}"/>
                             </VBox>
-                            <!-- Cantidad y botón -->
+                            
                             <VBox alignItems="End">
                                 <Button
-                                text="Carrito"
+                                text="{i18n>cartButton}"
                                 press="onCambiarListFav"
                                 icon="sap-icon://cart-2"
 								type="Emphasized"/>
@@ -93,62 +92,3 @@
         </content>
     </Page>
 </mvc:View>
-
-<!-- <mvc:View
-    controllerName="myapp.controller.Cart"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    displayBlock="true">
-    <Page title="Carrito de Compras">
-        <content>
-            <Table
-                id="cartTable"
-                items="{
-        			path: 'carts>/carritoCompra'
-				}"
-                growing="true"
-                growingThreshold="5">
-                <columns>
-                    <Column>
-                        <Text text="Producto"/>
-                    </Column>
-                    <Column>
-                        <Text text="Precio"/>
-                    </Column>
-                    <Column>
-                        <Text text="Cantidad"/>
-                    </Column>
-                    <Column>
-                        <Text text="Subtotal"/>
-                    </Column>
-                    <Column width="100px"/>
-                </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <Text text="{name}"/>
-                            <Text text="{price}"/>
-                            <Input
-                                value="{quantity}"
-                                type="Number"
-                                change="onQuantityChange"/>
-                            <Text text="{= ${price} * ${quantity}}"/>
-                            <Button
-                                text="Eliminar"
-                                press="onDeleteItem"
-                                type="Reject"/>
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-            <Toolbar>
-                <ToolbarSpacer/>
-                <Text text="Total: {/total}"/>
-                <Button
-                    text="Proceder al Pago"
-                    press="onCheckout"
-                    type="Emphasized"/>
-            </Toolbar>
-        </content>
-    </Page>
-</mvc:View> -->

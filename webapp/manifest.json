@@ -2,6 +2,9 @@
   "_version": "1.65.0",
   "sap.app": {
     "id": "ui5.ShopStarWars",
+	"i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
     "type": "application",
     "applicationVersion": {
       "version": "1.0.0"
@@ -18,6 +21,16 @@
 		"sap.uxap": {}
       }
     },
+	"models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ui5.ShopStarWars.i18n.i18n",
+          "supportedLocales": [""],
+          "fallbackLocale": ""
+        }
+      }
+	},
     "config": {
       "fullWidth": true
     },

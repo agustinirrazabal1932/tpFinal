@@ -9,10 +9,10 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="Productos"/>
+					<Title text="{i18n>productsTitle}"/>
 				</f:heading>
 				<f:actions>
-                	<Button id="botonAtrasCategorias" icon="sap-icon://nav-back" press="onAtras" type="Transparent"/>
+                	<Button id="botonAtrasCategorias" icon="sap-icon://nav-back" press="onAtras" type="Transparent" tooltip="{i18n>backButtonTooltip}"/>
             	</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -32,17 +32,15 @@
 				<headerToolbar>
 					<OverflowToolbar>
 						<ToolbarSpacer/>
-						<SearchField search="onSearch" width="17.5rem"/>
-						<!-- <OverflowToolbarButton icon="sap-icon://add" type="Transparent" press="onAdd"/>
-						<OverflowToolbarButton icon="sap-icon://sort" type="Transparent" press="onSort"/> -->
+						<SearchField search="onSearch" width="17.5rem" placeholder="{i18n>searchPlaceholder}"/>
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
 					<Column width="12em">
-						<Text text="Product" />
+						<Text text="{i18n>productColumn}" />
 					</Column>
 					<Column	hAlign="End">
-						<Text text="Price" />
+						<Text text="{i18n>priceColumn}" />
 					</Column>
 				</columns>
 				<items>
@@ -61,14 +59,5 @@
 				</items>
 			</Table>
 		</f:content>
-
-		<!-- DynamicPage Footer -->
-		<f:footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button type="Accept" text="Accept"/>
-				<Button type="Reject" text="Reject"/>
-			</OverflowToolbar>
-		</f:footer>
 	</f:DynamicPage>
 </mvc:View>

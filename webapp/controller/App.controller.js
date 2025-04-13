@@ -1,25 +1,16 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function ( Controller,JSONModel) {
+	"sap/ui/core/mvc/Controller"
+], function ( Controller) {
 	"use strict";
 
 	return Controller.extend("ui5.ShopStarWars.controller.App", {
 		onInit: function () {
-            var oViewModel,
-
-			oViewModel = new JSONModel({
-				layout : "TwoColumnsMidExpanded",
-				smallScreenMode : true
-			});
-
-			this.getView().setModel(oViewModel, "appView");
 			
 		},
         //sirve para cargar los datos ante que se vea la interfaz
         //para sincronizar los cambios de estados
 		onStateChange: function (oEvent) {
-			var sLayout = oEvent.getParameter("layout"),
+			let sLayout = oEvent.getParameter("layout"),
 				iColumns = oEvent.getParameter("maxColumnsCount");
 
 			if (iColumns === 1) {
@@ -33,21 +24,11 @@ sap.ui.define([
 			}
 		},
 
-		/**
-		 * Sets the flexible column layout to one, two, or three columns for the different scenarios across the app
-		 * @param {string} sColumns the target amount of columns
-		 * @private
-		 */
+		//sirve para setear la cantidad de columnas del layout
 		_setLayout: function (sColumns) {
 			if (sColumns) {
 				this.getView().getModel("appView").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
 			}
 		},
-
-        // //para cerrar el router y liberar memoria
-		// onExit: function () {
-		// 	this.oRouter.detachRouteMatched(this.onRouteMatched, this);
-		// 	this.oRouter.detachBeforeRouteMatched(this.onBeforeRouteMatched, this);
-		// }
 	});
 });
