@@ -17,21 +17,14 @@ sap.ui.define([
 
 			if (iColumns === 1) {
 				this.BgetModel("appView").setProperty("/smallScreenMode", true);
-				this._setLayout("One");
+				this.BsetLayout("One");
 				this.oRouter.navTo("inicioPhone");
 			} else {
 				this.BgetModel("appView").setProperty("/smallScreenMode", false);
 				if (sLayout === "OneColumn") {
-					this._setLayout("Two");
+					this.BsetLayout("Two");
 					this.oRouter.navTo("inicio");
 				}
-			}
-		},
-
-		//sirve para setear la cantidad de columnas del layout
-		_setLayout: function (sColumns) {
-			if (sColumns) {
-				this.BgetModel("appView").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
 			}
 		},
 	});

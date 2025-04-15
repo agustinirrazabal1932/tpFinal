@@ -70,7 +70,8 @@
 			"controlAggregation": "midColumnPages",
 			"bypassed": {
 				"target": [
-					"inicio"
+					"notfound",
+					"notfoundMid"
 				]
 			}
 		},
@@ -144,6 +145,15 @@
 
 		],
 		"targets": {
+
+			"notfound":{
+				"name": "NotFound",
+				"controlAggregation": "beginColumnPages"
+			},
+			"notfoundMid":{
+				"name": "NotFound",
+				"controlAggregation": "midColumnPages"
+			},
 			"cartPhone":{
 				"name": "Cart",
 				"controlAggregation": "beginColumnPages"

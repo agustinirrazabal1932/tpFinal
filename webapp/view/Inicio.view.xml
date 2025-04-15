@@ -2,6 +2,8 @@
     controllerName="ui5.ShopStarWars.controller.Inicio"
     xmlns="sap.m"
     xmlns:f="sap.f"
+	xmlns:c="sap.ui.core.Core"
+	xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:cards="sap.f.cards"
 	xmlns:l="sap.ui.layout">
@@ -34,6 +36,7 @@
 						tooltip="{i18n>toCartButtonTooltip}"
 						press=".onToggleCart"
 						visible="{= !${appView>/smallScreenMode}}"/>
+					<core:Fragment fragmentName="ui5.ShopStarWars.view.fragments.Tema" type="XML"/>
 						
             	</f:actions>
             </f:DynamicPageTitle>
@@ -109,10 +112,5 @@
 				</ScrollContainer>
 			</Carousel>
         </f:content>
-		<f:footer>
-			<OverflowToolbar >
-
-			</OverflowToolbar>
-		</f:footer>
     </f:DynamicPage>
 </mvc:View>

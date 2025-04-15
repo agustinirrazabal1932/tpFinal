@@ -1,14 +1,16 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent",
-], function(Controller,UIComponent) {
+    "sap/ui/core/Core",
+], function(Controller,Core) {
     "use strict";
 
 	return Controller.extend("ui5.ShopStarWars.controller.BaseController", {
-        //funcion para ver el router
-        // BgetRouter: function () {
-		// 	return UIComponent.getRouterFor(this);
-		// },
+        //sirve para setear la cantidad de columnas del layout
+		BsetLayout: function (sColumns) {
+			if (sColumns) {
+				this.BgetModel("appView").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
+			}
+		},
 
         //funcion para ver el modelo
         BgetModel: function (sNombre) {
@@ -28,6 +30,15 @@ sap.ui.define([
             
             oModel.setProperty("/total", fTotal.toFixed(2));
         },
+        //cambiar el tema de color de blaco a oscuro
+        onCambio: function(oEvent){
+            if(oEvent.getSource().data("Tema")=="L"){
+                Core.applyTheme("sap_horizon")
+            }
+            else{
+                Core.applyTheme("sap_horizon_dark")
+            }
+        }
 
     })
 })
