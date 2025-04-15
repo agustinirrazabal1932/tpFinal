@@ -12,7 +12,8 @@
 					<Title text="{i18n>productsTitle}"/>
 				</f:heading>
 				<f:actions>
-                	<Button id="botonAtrasCategorias" icon="sap-icon://nav-back" press="onAtras" type="Transparent" tooltip="{i18n>backButtonTooltip}"/>
+                	<Button id="botonAtrasCategorias" icon="sap-icon://nav-back" press="onAtras" type="Transparent" tooltip="{i18n>backButtonHomePhone}" visible="{= !${appView>/smallScreenMode}}"/>
+					<Button id="botonAtrasCategoriasPhone" icon="sap-icon://nav-back" press="onAtrasPhone" type="Transparent" tooltip="{i18n>backButtonCategory}" visible="{= ${appView>/smallScreenMode}}"/>
             	</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>

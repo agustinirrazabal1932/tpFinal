@@ -15,11 +15,26 @@
 					<Title text="{i18n>welcomeTitle}"/>
                 </f:heading>
 				<f:actions>
+					<Button
+					text="{i18n>buttonCatalog}"
+					icon="sap-icon://list"
+					press="onListPhone"
+					tooltip="{i18n>toListButton}"
+					visible="{= ${appView>/smallScreenMode}}"
+					/>
+					<Button
+					icon="sap-icon://cart"
+					press="onCart"
+					visible="{= ${appView>/smallScreenMode}}"
+					tooltip="{i18n>toCartButton}"
+					/>
 					<ToggleButton
 						icon="sap-icon://cart"
 						pressed="{= ${appView>/layout}.startsWith('ThreeColumns') }"
 						tooltip="{i18n>toCartButtonTooltip}"
-						press=".onToggleCart"/>
+						press=".onToggleCart"
+						visible="{= !${appView>/smallScreenMode}}"/>
+						
             	</f:actions>
             </f:DynamicPageTitle>
         </f:title>
@@ -94,5 +109,10 @@
 				</ScrollContainer>
 			</Carousel>
         </f:content>
+		<f:footer>
+			<OverflowToolbar >
+
+			</OverflowToolbar>
+		</f:footer>
     </f:DynamicPage>
 </mvc:View>

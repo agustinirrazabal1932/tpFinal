@@ -1,26 +1,39 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"./BaseController",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-], function (Controller, Filter, FilterOperator) {
+], function (BaseController, Filter, FilterOperator) {
 	"use strict";
 
-	return Controller.extend("ui5.ShopStarWars.controller.Category", {
+	return BaseController.extend("ui5.ShopStarWars.controller.Category", {
         onInit: function () {
 			//recupero el router
 			this.oRouter = this.getOwnerComponent().getRouter();
 			//machea el router y la vista con la categoria que se le envio de list
 			this.oRouter.getRoute("listCategory").attachPatternMatched(this._onCategoryMatched, this);
 			this.oRouter.getRoute("detalleProducto").attachPatternMatched(this._onCategoryMatched, this);
+			this.oRouter.getRoute("detalleProductoPhone").attachPatternMatched(this._onCategoryMatched, this);
+			
 		},
 		//funcion para seleccionar el producto y verlo en detalleProducto
 		onListItemPress: function (oEvent) {
 
 			let productPath = oEvent.getSource().getSelectedItem().getBindingContext("products").getPath(),
-				product = productPath.split("/").slice(-1).pop();
+				product = productPath.split("/").slice(-1).pop(),
+				bSmallScreen=this.BgetModel("appView").getProperty("/smallScreenMode");
+			if(bSmallScreen){
+		
+				this.oRouter.navTo("detalleProductoPhone", {category: this._category, product: product});
 
-			this.oRouter.navTo("detalleProducto", {category: this._category, product: product});
+			}else{
+				this.oRouter.navTo("detalleProducto", {category: this._category, product: product});
+			}
 
+
+		},
+		//funcion para volver al la vista de list de phone
+		onAtrasPhone: function(){
+			this.oRouter.navTo("listPhone");
 		},
 		//funcion para volver al la vista inicio
 		onAtras: function(){

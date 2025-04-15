@@ -2,7 +2,23 @@
 	controllerName="ui5.ShopStarWars.controller.Cart"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
-	<Page class="customPageTitle" title="Carrito de Compras">
+	<Page showHeader="true" class="customPageTitle">
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Title text="Carrito de Compras" />
+                </contentMiddle>
+                <contentRight>
+                   <Button 
+                        id="botonHomePhoneCart" 
+                        icon="sap-icon://home" 
+                        press="onHome" 
+                        type="Transparent" 
+                        tooltip="{i18n>backButtonHomePhone}"
+                        visible="{= ${appView>/smallScreenMode}}"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
         <content>
             <List
                 id="cartList"
@@ -17,6 +33,7 @@
                 <headerToolbar >
 					<Toolbar>
 						<Title text="{i18n>shoppingListTitle}"/>
+                       
 					</Toolbar>
 				</headerToolbar>
                 <items>

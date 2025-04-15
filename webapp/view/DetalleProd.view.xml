@@ -38,6 +38,13 @@
 									icon="sap-icon://add-favorite"
 									type="Success"
 									press="onFavorito"/>
+							<m:Button 
+									id="botonHomePhoneDetalle" 
+									icon="sap-icon://home" 
+									press="onHomeDetalle" 
+									type="Transparent" 
+									tooltip="{i18n>backButtonHomePhone}"
+									visible="{= ${appView>/smallScreenMode}}"/>
 						</actions>
 
 					</ObjectPageDynamicHeaderTitle>

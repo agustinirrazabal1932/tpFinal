@@ -1,35 +1,30 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "./BaseController",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-], (Controller,MessageToast,MessageBox) => {
+], (BaseController,MessageToast,MessageBox) => {
     "use strict";
 
-    return Controller.extend("ui5.ShopStarWars.controller.Cart", {
+    return BaseController.extend("ui5.ShopStarWars.controller.Cart", {
         onInit() {
             //recupero router
             this.oRouter = this.getOwnerComponent().getRouter();
 
         },
-        //actualizar valor del total de compra
-        _updateTotal: function() {
-            let oModel = this.getView().getModel("carts");
-            let aItems =oModel.getProperty("/carritoCompra") || [];
-            let fTotal = aItems.reduce(function(sum, item) {
-                return sum + (item.price * item.quantity);
-            }, 0);
-            console.log([ fTotal.toFixed(2)]);
-            oModel.setProperty("/total", fTotal.toFixed(2));
-        },
+        //vuelvo al home del Phone
+        onHome: function(){
+			this.oRouter.navTo("inicioPhone");
+		},
+        
         //para proceder a la compra
         onCheckout: function(){
-
-            let oModel = this.getView().getModel("carts"),
+            let oModel = this.BgetModel("carts"),
                 estado_f= this,
+                oResourceBundle = this.BgetResourceBundle(),
                 aCartItems = oModel.getProperty("/carritoCompra") || [];
 
-            MessageBox.show(("¿Esta seguro que desea hacer la compra?"), {
-                title: "Aviso",
+            MessageBox.show(oResourceBundle.getText("questionMsgBox"), {
+                title: oResourceBundle.getText("titleMsgBox"),
                 actions: [
                     MessageBox.Action.OK,
                     MessageBox.Action.CANCEL
@@ -38,10 +33,10 @@ sap.ui.define([
                     if (oAction !== MessageBox.Action.OK) {
                         return;
                     }
-                    MessageBox.show("!!FELICIDADES SU COMPRA SE EJECUTO CON EXITO¡¡")
+                    MessageBox.show(oResourceBundle.getText("purchaseMadeMsgBox"))
                     aCartItems=[];
                     oModel.setProperty("/carritoCompra", aCartItems);
-                    estado_f._updateTotal();
+                    estado_f.BupdateTotal();
 
                 }
             });
@@ -51,12 +46,13 @@ sap.ui.define([
             let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
                 oProduct=oBindingContext.getObject(),
                 sNombre=oProduct.name,
-                oModel = this.getView().getModel("carts"),
+                oModel = this.BgetModel("carts"),
+                oResourceBundle = this.BgetResourceBundle(),
                 estado_f= this,
                 aCartItems = oModel.getProperty("/carritoCompra") || [],
                 iProduct=-1;
-            MessageBox.show(("¿Desea eliminar Este Item?"), {
-                title: "Aviso",
+            MessageBox.show(oResourceBundle.getText("textDeleteMsgBox"), {
+                title: oResourceBundle.getText("titleDeleteMsgBox"),
                 actions: [
                     MessageBox.Action.DELETE,
                     MessageBox.Action.CANCEL
@@ -76,9 +72,9 @@ sap.ui.define([
                     if(iProduct>-1){
                         aCartItems.splice(iProduct, 1);
                         oModel.setProperty("/carritoCompra", aCartItems);
-                        estado_f._updateTotal();
+                        estado_f.BupdateTotal();
                     }
-                    MessageToast.show("Se eliminado el Producto "+ [sNombre]);
+                    MessageToast.show(oResourceBundle.getText("productDelete", [sNombre]));
                 }
                 
             });
@@ -94,7 +90,7 @@ sap.ui.define([
             // Obtener el contexto de binding
             let oBindingContext = oListItem.getBindingContext("carts"),
                 oProducto=oBindingContext.getObject(),
-                oModel = this.getView().getModel("carts"),
+                oModel = this.BgetModel("carts"),
                 aCartItems = oModel.getProperty("/carritoCompra") || [],
                 aCartFavorito=oModel.getProperty("/carritoGuardar") || [],
                 iProduct=-1,
@@ -116,18 +112,19 @@ sap.ui.define([
 			}
             oModel.setProperty("/carritoCompra", aCartItems);
 			oModel.setProperty("/carritoGuardar", aCartFavorito);
-			this._updateTotal();
+			this.BupdateTotal();
         },
         //funcion que se activa cuando eliminamos del carrito de favorito
         onEliminardelCarritoFav: function(oEvent){
             let oBindingContext = oEvent.getParameter("listItem").getBindingContext("carts"),
                 oProduct=oBindingContext.getObject(),
                 sNombre=oProduct.name,
-                oModel = this.getView().getModel("carts"),
+                oModel = this.BgetModel("carts"),
+                oResourceBundle = this.BgetResourceBundle(),
                 aCartItems = oModel.getProperty("/carritoGuardar") || [],
                 iProduct=-1;
-            MessageBox.show(("¿Desea eliminar Este Item?"), {
-                title: "Aviso",
+            MessageBox.show(oResourceBundle.getText("textDeleteMsgBox"), {
+                title: oResourceBundle.getText("titleDeleteMsgBox"),
                 actions: [
                     MessageBox.Action.DELETE,
                     MessageBox.Action.CANCEL
@@ -148,7 +145,7 @@ sap.ui.define([
                         aCartItems.splice(iProduct, 1);
                         oModel.setProperty("/carritoGuardar", aCartItems);
                     }
-                    MessageToast.show("Se eliminado el Producto "+ [sNombre]);
+                    MessageToast.show(oResourceBundle.getText("productDelete", [sNombre]));
                 }
             });
         },
@@ -161,7 +158,7 @@ sap.ui.define([
             // Obtener el contexto de binding
             let oBindingContext = oListItem.getBindingContext("carts"),
                 oProducto=oBindingContext.getObject(),
-                oModel = this.getView().getModel("carts"),
+                oModel = this.BgetModel("carts"),
                 aCartItems = oModel.getProperty("/carritoGuardar") || [],
                 aCartCompra=oModel.getProperty("/carritoCompra") || [],
                 iProduct=-1,
@@ -183,7 +180,7 @@ sap.ui.define([
 			}
             oModel.setProperty("/carritoCompra", aCartCompra);
 			oModel.setProperty("/carritoGuardar", aCartItems);
-			this._updateTotal();
+			this.BupdateTotal();
         }
 
     });

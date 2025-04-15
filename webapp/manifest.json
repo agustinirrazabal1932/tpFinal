@@ -76,6 +76,22 @@
 		},
 		"routes": [
 			{
+				"pattern": "cartPhone",
+				"name": "cartPhone",
+				"target": [
+					"cartPhone"
+				]
+
+			},
+			{
+				"pattern": "inicioPhone",
+				"name": "inicioPhone",
+				"target": [
+					"inicioPhone"
+				]
+
+			},
+			{
 				"pattern": "",
 				"name": "inicio",
 				"target": [
@@ -108,10 +124,38 @@
 					"inicio",
 					"cart"
 				]
+			},
+			{
+				"pattern": "listPhone",
+				"name": "listPhone",
+				"target": [
+					"list"
+				
+				]
+			},
+			{
+				"pattern":"detalleProductoPhone/{category}/{product}",
+				"name": "detalleProductoPhone",
+				"target": [
+					"detalleProductoPhone"
+				
+				]
 			}
 
 		],
 		"targets": {
+			"cartPhone":{
+				"name": "Cart",
+				"controlAggregation": "beginColumnPages"
+			},
+			"detalleProductoPhone":{
+				"name": "DetalleProd",
+				"controlAggregation": "beginColumnPages"
+			},
+			"inicioPhone":{
+				"name": "Inicio",
+				"controlAggregation": "beginColumnPages"
+			},
 			"list": {
 				"name": "List",
 				"controlAggregation": "beginColumnPages"

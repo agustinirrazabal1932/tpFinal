@@ -1,10 +1,10 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "./BaseController",
     "sap/m/library"
-], (Controller,library) => {
+], (BaseController,library) => {
     "use strict";
 
-    return Controller.extend("ui5.ShopStarWars.controller.Inicio", {
+    return BaseController.extend("ui5.ShopStarWars.controller.Inicio", {
         onInit() {
             //recupero el router
             this.oRouter = this.getOwnerComponent().getRouter();
@@ -22,14 +22,18 @@ sap.ui.define([
             
            
         },
+        onCart: function (){
+            this.oRouter.navTo("cartPhone");
+
+        },
         //funcion del boton para acceder al carrito
         onToggleCart: function (oEvent) {
 			let bPressed = oEvent.getParameter("pressed");
 
             if(bPressed){
-                this.getView().getModel("appView").setProperty("/layout", "ThreeColumnsMidExpanded");
+                this.BgetModel("appView").setProperty("/layout", "ThreeColumnsMidExpanded");
             }else{
-                this.getView().getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+                this.BgetModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
             }
 
 			this.oRouter.navTo(bPressed ? "cart" : "inicio");
@@ -42,7 +46,17 @@ sap.ui.define([
                 oProduct = oBindingContext.getObject(),
                 productPath = oBindingContext.getPath(),//obtiene la ruta del producto seleccionado
 				product = productPath.split("/").slice(-1).pop();//limpia la ruta para solo devolver el producto
-            this.oRouter.navTo("detalleProducto", {category: oProduct.categories, product: product});
-		}
+            let bSmallScreen=this.BgetModel("appView").getProperty("/smallScreenMode");
+            
+            if(bSmallScreen){
+                this.oRouter.navTo("detalleProductoPhone", {category: oProduct.categories, product: product});
+            }else{
+                this.oRouter.navTo("detalleProducto", {category: oProduct.categories, product: product});
+            }
+		},
+        //para ir a la list en versiones de phone
+        onListPhone: function(){
+            this.oRouter.navTo("listPhone");
+        }
     });
 });

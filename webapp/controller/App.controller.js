@@ -1,10 +1,12 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function ( Controller) {
+	"./BaseController",
+	"sap/ui/Device"
+], function ( BaseController,Device) {
 	"use strict";
 
-	return Controller.extend("ui5.ShopStarWars.controller.App", {
+	return BaseController.extend("ui5.ShopStarWars.controller.App", {
 		onInit: function () {
+			this.oRouter = this.getOwnerComponent().getRouter();
 			
 		},
         //sirve para cargar los datos ante que se vea la interfaz
@@ -14,12 +16,14 @@ sap.ui.define([
 				iColumns = oEvent.getParameter("maxColumnsCount");
 
 			if (iColumns === 1) {
-				this.getView().getModel("appView").setProperty("/smallScreenMode", true);
+				this.BgetModel("appView").setProperty("/smallScreenMode", true);
+				this._setLayout("One");
+				this.oRouter.navTo("inicioPhone");
 			} else {
-				this.getView().getModel("appView").setProperty("/smallScreenMode", false);
-				// swich back to two column mode when device orientation is changed
+				this.BgetModel("appView").setProperty("/smallScreenMode", false);
 				if (sLayout === "OneColumn") {
 					this._setLayout("Two");
+					this.oRouter.navTo("inicio");
 				}
 			}
 		},
@@ -27,7 +31,7 @@ sap.ui.define([
 		//sirve para setear la cantidad de columnas del layout
 		_setLayout: function (sColumns) {
 			if (sColumns) {
-				this.getView().getModel("appView").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
+				this.BgetModel("appView").setProperty("/layout", sColumns + "Column" + (sColumns === "One" ? "" : "sMidExpanded"));
 			}
 		},
 	});
